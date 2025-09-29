@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "e4f04378-990a-4a7d-b371-635ea47b6f11",
+		"name": "SMG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21771919"
+	},
+	"item": [
+		{
+			"name": "Publish message",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/car-listing/file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"car-listing",
+						"file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Car Listening",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\n//     \"type\": \"UPDATE\", // CREATE | UPDATE | DELETE\n//     \"schemaVersion\": 1,\n//     \"listingId\": \"f482b8d2-a3cf-4925-8f62-bd34e196f93d\",\n//     \"make\": \"Volkswagen\",\n//     \"model\": \"Matija\",\n//     \"year\": 1990,\n//     \"version\": 1\n// }\n{\n    \"type\": \"UPDATE\", // CREATE | UPDATE | DELETE\n    \"schemaVersion\": 1,\n    \"listingId\": \"19837e9f-90d7-48ec-97fc-54f1390e55e5\",\n    \"make\": \"Ford\",\n    \"model\": \"Kugaga\",\n    \"year\": 2026,\n    \"version\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/car-listing/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"car-listing",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE Car Listening",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\" : \"CREATE\",                // CREATED | UPDATED | DELETED\n    \"schemaVersion\" : 1,\n    \"listingId\": \"{{$guid}}\",\n    \"make\": \"TOYOTA\",\n    \"model\": \"RAV 4\",\n    \"year\": \"2005\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/car-listing/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"car-listing",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Car Listening",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/car-listing/search?make=Volkswagen&sort=-year",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"car-listing",
+						"search"
+					],
+					"query": [
+						{
+							"key": "make",
+							"value": "Volkswagen"
+						},
+						{
+							"key": "model",
+							"value": "Kugaga",
+							"disabled": true
+						},
+						{
+							"key": "yearFrom",
+							"value": "2002",
+							"disabled": true
+						},
+						{
+							"key": "yearTo",
+							"value": "2000",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "-year"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

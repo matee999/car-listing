@@ -1,0 +1,2502 @@
+[
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2007
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 1998
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 1995
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 1992
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2003
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 1991
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2024
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 2018
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 1990
+  },
+  {
+    "make": "BMW",
+    "model": "X1",
+    "year": 2011
+  },
+  {
+    "make": "Škoda",
+    "model": "Octavia",
+    "year": 2003
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 1995
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2012
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 2006
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2024
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 1995
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 2013
+  },
+  {
+    "make": "Renault",
+    "model": "Megane",
+    "year": 1994
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2008
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 1996
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2019
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2013
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2007
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2000
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2000
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2007
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2010
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 1992
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2007
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2010
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 2015
+  },
+  {
+    "make": "Opel",
+    "model": "Astra",
+    "year": 2006
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2025
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 2017
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2013
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2022
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1993
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2000
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1994
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2019
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 2025
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2024
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 1997
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2000
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2006
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2022
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 2022
+  },
+  {
+    "make": "Renault",
+    "model": "Megane",
+    "year": 1999
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2024
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2010
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1997
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2005
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 1995
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 1994
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 1998
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2000
+  },
+  {
+    "make": "Škoda",
+    "model": "Karoq",
+    "year": 2017
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 2002
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2013
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2018
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2004
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 1991
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 2004
+  },
+  {
+    "make": "Renault",
+    "model": "Megane",
+    "year": 1990
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2004
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2011
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2005
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2003
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2020
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 2016
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 1996
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2017
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 1993
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2015
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2005
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2024
+  },
+  {
+    "make": "Opel",
+    "model": "Astra",
+    "year": 2017
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 2019
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 2018
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 1993
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 1995
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2016
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2003
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2000
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2014
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2008
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 2021
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2008
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 2024
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 1993
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 2020
+  },
+  {
+    "make": "Peugeot",
+    "model": "508",
+    "year": 2000
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 1995
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 1994
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 1997
+  },
+  {
+    "make": "Renault",
+    "model": "Megane",
+    "year": 1992
+  },
+  {
+    "make": "Renault",
+    "model": "Clio",
+    "year": 2016
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 2023
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2003
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2006
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 2009
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 1994
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 1996
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2003
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 1998
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2005
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2000
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2009
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 1990
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 1996
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 1997
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 1999
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 2003
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2006
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 2006
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2017
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 1990
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2006
+  },
+  {
+    "make": "BMW",
+    "model": "X1",
+    "year": 2025
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1990
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 1999
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2013
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 1999
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 1992
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 1992
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2005
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 2025
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1999
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2001
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2001
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2005
+  },
+  {
+    "make": "Škoda",
+    "model": "Octavia",
+    "year": 1996
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2020
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2019
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2004
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 2002
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2007
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 2012
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 2024
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 1997
+  },
+  {
+    "make": "Škoda",
+    "model": "Octavia",
+    "year": 2006
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2017
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2017
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 1997
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 2002
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 2017
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 2024
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2017
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 2010
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 2022
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2010
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2025
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2016
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 2009
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1990
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 2003
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 2010
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2018
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 2020
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 2008
+  },
+  {
+    "make": "Peugeot",
+    "model": "508",
+    "year": 2011
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2009
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 1999
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2005
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 1994
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2002
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2015
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 1990
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2004
+  },
+  {
+    "make": "BMW",
+    "model": "X3",
+    "year": 2019
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 2005
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 1998
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2025
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 2018
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 2017
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 2000
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2006
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2023
+  },
+  {
+    "make": "Opel",
+    "model": "Astra",
+    "year": 2007
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2008
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2011
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 1995
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2004
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 2003
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2016
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 2019
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2003
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 1991
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2020
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2009
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2024
+  },
+  {
+    "make": "Peugeot",
+    "model": "508",
+    "year": 2004
+  },
+  {
+    "make": "Opel",
+    "model": "Astra",
+    "year": 2007
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 1991
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2015
+  },
+  {
+    "make": "BMW",
+    "model": "X1",
+    "year": 1998
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 1991
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1991
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 1998
+  },
+  {
+    "make": "Opel",
+    "model": "Astra",
+    "year": 1993
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2010
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 2010
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2007
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 1995
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2024
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2004
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 1991
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 1991
+  },
+  {
+    "make": "Renault",
+    "model": "Megane",
+    "year": 2005
+  },
+  {
+    "make": "BMW",
+    "model": "X1",
+    "year": 1997
+  },
+  {
+    "make": "Renault",
+    "model": "Megane",
+    "year": 2019
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 2000
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 1997
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 1996
+  },
+  {
+    "make": "Renault",
+    "model": "Clio",
+    "year": 2009
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2015
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 2005
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 1997
+  },
+  {
+    "make": "Renault",
+    "model": "Clio",
+    "year": 2012
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 2013
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2011
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2021
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2013
+  },
+  {
+    "make": "Opel",
+    "model": "Astra",
+    "year": 2017
+  },
+  {
+    "make": "BMW",
+    "model": "X3",
+    "year": 2007
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 2020
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2007
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 1995
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2005
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2014
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2021
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2021
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2006
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2007
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2023
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 2005
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2025
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 2021
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1995
+  },
+  {
+    "make": "Škoda",
+    "model": "Octavia",
+    "year": 2015
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2013
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2023
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2025
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2019
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 2006
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 2002
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2024
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2003
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2023
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 1996
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2004
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2009
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 1998
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 1993
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 1998
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1990
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 2020
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2011
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 2006
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1994
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 1994
+  },
+  {
+    "make": "Renault",
+    "model": "Clio",
+    "year": 1999
+  },
+  {
+    "make": "BMW",
+    "model": "X3",
+    "year": 2009
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 1997
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 2004
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 2018
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2017
+  },
+  {
+    "make": "Škoda",
+    "model": "Karoq",
+    "year": 1993
+  },
+  {
+    "make": "Renault",
+    "model": "Clio",
+    "year": 2003
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 1995
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2001
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2000
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2018
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2008
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2008
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 1994
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2002
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2024
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2007
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 1993
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 2008
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2019
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2007
+  },
+  {
+    "make": "Peugeot",
+    "model": "508",
+    "year": 2021
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1992
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2006
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2004
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 1991
+  },
+  {
+    "make": "Škoda",
+    "model": "Karoq",
+    "year": 1992
+  },
+  {
+    "make": "BMW",
+    "model": "X1",
+    "year": 2023
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2001
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2021
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2012
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2010
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2011
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2008
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1992
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2010
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 1997
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1990
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 2016
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2023
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 2021
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2003
+  },
+  {
+    "make": "Škoda",
+    "model": "Karoq",
+    "year": 1998
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2021
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2005
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 2025
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 2016
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 1997
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1999
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2022
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2020
+  },
+  {
+    "make": "Opel",
+    "model": "Astra",
+    "year": 2019
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2014
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 2022
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 2007
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2022
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 2008
+  },
+  {
+    "make": "Škoda",
+    "model": "Karoq",
+    "year": 2021
+  },
+  {
+    "make": "BMW",
+    "model": "X1",
+    "year": 2024
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2011
+  },
+  {
+    "make": "Peugeot",
+    "model": "508",
+    "year": 2014
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2002
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 2014
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 1992
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2014
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 2021
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2022
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 1996
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2023
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1999
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 1994
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2011
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 1995
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 2014
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2024
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 1994
+  },
+  {
+    "make": "Mercedes",
+    "model": "E220",
+    "year": 2004
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 1996
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2000
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 1992
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2008
+  },
+  {
+    "make": "Toyota",
+    "model": "RAV4",
+    "year": 2017
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2023
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 2001
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 1995
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2005
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 1999
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 2006
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 1990
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2024
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 2018
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 2009
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2019
+  },
+  {
+    "make": "Škoda",
+    "model": "Octavia",
+    "year": 2014
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2005
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 2012
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 2008
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2007
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 1993
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2008
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 2012
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2006
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 1992
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 1992
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 1998
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 2010
+  },
+  {
+    "make": "Ford",
+    "model": "Fiesta",
+    "year": 2002
+  },
+  {
+    "make": "BMW",
+    "model": "X3",
+    "year": 2013
+  },
+  {
+    "make": "Peugeot",
+    "model": "508",
+    "year": 2007
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 2020
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 1997
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1999
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 2025
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2015
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2024
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2013
+  },
+  {
+    "make": "Škoda",
+    "model": "Karoq",
+    "year": 2014
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2004
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 2025
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 2004
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2009
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 1998
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2009
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1996
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 1998
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2013
+  },
+  {
+    "make": "Peugeot",
+    "model": "2008",
+    "year": 1999
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2021
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2007
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2003
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 2005
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2013
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 1993
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2002
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 1995
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLC",
+    "year": 1991
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2005
+  },
+  {
+    "make": "BMW",
+    "model": "X3",
+    "year": 2003
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2003
+  },
+  {
+    "make": "Renault",
+    "model": "Megane",
+    "year": 2004
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 1990
+  },
+  {
+    "make": "Škoda",
+    "model": "Octavia",
+    "year": 1998
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 2001
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 1998
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2005
+  },
+  {
+    "make": "Renault",
+    "model": "Scenic",
+    "year": 1991
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 1993
+  },
+  {
+    "make": "BMW",
+    "model": "X1",
+    "year": 2023
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2020
+  },
+  {
+    "make": "Opel",
+    "model": "Insignia",
+    "year": 2022
+  },
+  {
+    "make": "Renault",
+    "model": "Clio",
+    "year": 2018
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 1992
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 2019
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2020
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 1996
+  },
+  {
+    "make": "Opel",
+    "model": "Mokka",
+    "year": 1994
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 1999
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2007
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 2025
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2023
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2022
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 1996
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2003
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2004
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2019
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 1996
+  },
+  {
+    "make": "Toyota",
+    "model": "Auris",
+    "year": 2010
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 1999
+  },
+  {
+    "make": "Opel",
+    "model": "Corsa",
+    "year": 1995
+  },
+  {
+    "make": "Audi",
+    "model": "A3",
+    "year": 2017
+  },
+  {
+    "make": "Audi",
+    "model": "A6",
+    "year": 1998
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2025
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 1997
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2017
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2009
+  },
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2022
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2020
+  },
+  {
+    "make": "Mercedes",
+    "model": "A180",
+    "year": 2012
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 1997
+  },
+  {
+    "make": "Škoda",
+    "model": "Karoq",
+    "year": 2004
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 2025
+  },
+  {
+    "make": "Volkswagen",
+    "model": "T-Roc",
+    "year": 2007
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2007
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 2012
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 1999
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 1994
+  },
+  {
+    "make": "BMW",
+    "model": "116d",
+    "year": 1995
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2014
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2011
+  },
+  {
+    "make": "BMW",
+    "model": "520d",
+    "year": 2009
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 1995
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2000
+  },
+  {
+    "make": "Renault",
+    "model": "Clio",
+    "year": 1995
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2017
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2018
+  },
+  {
+    "make": "Ford",
+    "model": "Mondeo",
+    "year": 2003
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2012
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2008
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2023
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 2004
+  },
+  {
+    "make": "Ford",
+    "model": "Puma",
+    "year": 1993
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2009
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 2006
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 1997
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2017
+  },
+  {
+    "make": "BMW",
+    "model": "320d",
+    "year": 2014
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2022
+  },
+  {
+    "make": "Peugeot",
+    "model": "3008",
+    "year": 1994
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2017
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 1994
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 2017
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2016
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 2015
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Polo",
+    "year": 2000
+  },
+  {
+    "make": "Renault",
+    "model": "Captur",
+    "year": 2013
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 1996
+  },
+  {
+    "make": "Mercedes",
+    "model": "GLA",
+    "year": 2015
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2015
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 2004
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 1994
+  },
+  {
+    "make": "Peugeot",
+    "model": "208",
+    "year": 2023
+  },
+  {
+    "make": "Peugeot",
+    "model": "308",
+    "year": 2012
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2005
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2006
+  },
+  {
+    "make": "Mercedes",
+    "model": "C200",
+    "year": 1999
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2021
+  },
+  {
+    "make": "Opel",
+    "model": "Grandland",
+    "year": 2018
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 2010
+  },
+  {
+    "make": "Toyota",
+    "model": "Yaris",
+    "year": 2018
+  },
+  {
+    "make": "Audi",
+    "model": "Q3",
+    "year": 2018
+  },
+  {
+    "make": "Škoda",
+    "model": "Superb",
+    "year": 1993
+  },
+  {
+    "make": "Toyota",
+    "model": "C-HR",
+    "year": 1994
+  },
+  {
+    "make": "Škoda",
+    "model": "Kamiq",
+    "year": 2018
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2013
+  },
+  {
+    "make": "Škoda",
+    "model": "Fabia",
+    "year": 1995
+  },
+  {
+    "make": "Renault",
+    "model": "Kadjar",
+    "year": 2022
+  },
+  {
+    "make": "Ford",
+    "model": "Kuga",
+    "year": 2025
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2002
+  }
+]

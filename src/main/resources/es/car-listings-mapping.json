@@ -1,0 +1,10 @@
+{
+  "dynamic": "false",
+  "properties": {
+    "id":        { "type": "keyword" },
+    "make":      { "type": "keyword" },
+    "model":     { "type": "keyword" },
+    "year":      { "type": "integer" },
+    "updatedAt": { "type": "date", "format": "date_time" }
+  }
+}
