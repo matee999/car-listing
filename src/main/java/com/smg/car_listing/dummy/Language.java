@@ -1,0 +1,26 @@
+package com.smg.car_listing.dummy;
+
+
+import java.util.Locale;
+import lombok.AllArgsConstructor;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.LocaleResolver;
+
+/**
+ * Wrapper around the LocaleResolver from Spring so we do not need to bother with passing the
+ * HttpRequest object when asking for a Locale.
+ *
+ * @author nbaars
+ * @date 2/7/17
+ */
+@AllArgsConstructor
+public class Language {
+
+    private final LocaleResolver localeResolver;
+
+    public Locale getLocale() {
+        return localeResolver.resolveLocale(
+                ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest());
+    }
+}
