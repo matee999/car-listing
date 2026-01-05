@@ -32,6 +32,7 @@ jobs:
           github-token: ${{ secrets.PAT_TOKEN }}
           glog-token: ${{ secrets.GLOG_TOKEN }}
           env: 'dev'
+          debug: 'true'
 
       - name: Upload SARIF artifact
         uses: actions/upload-artifact@v4
