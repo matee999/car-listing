@@ -18,7 +18,7 @@ jobs:
           cache: 'gradle'
  
       - name: Compile project
-        run: ./gradlew clean build -DskipTests
+        run: ./gradlew clean build -x test
 
       - name: Checkout glog-action repository
         uses: actions/checkout@v4
