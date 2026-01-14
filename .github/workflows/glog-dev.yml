@@ -11,6 +11,15 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+ 
+      - name: Compile project
+        run: mvn --batch-mode clean install -DskipTests
+
       - name: Checkout glog-action repository
         uses: actions/checkout@v4
         with:
