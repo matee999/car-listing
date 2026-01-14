@@ -15,10 +15,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-          cache: 'maven'
+          cache: 'gradle'
  
       - name: Compile project
-        run: mvn --batch-mode clean install -DskipTests
+        run: ./gradlew clean build -DskipTests
 
       - name: Checkout glog-action repository
         uses: actions/checkout@v4
