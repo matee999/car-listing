@@ -10,7 +10,166 @@
           "version": "1.0.0",
           "semanticVersion": "1.0.0",
           "informationUri": "https://www.glog.ai",
-          "rules": [],
+          "rules": [
+            {
+              "id": "d7725477-9776-3792-9d79-96f5b42cdbd1",
+              "name": "Found Spring endpoint",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nThis class is a Spring Controller. All methods annotated with `RequestMapping` (as well as its shortcut annotations `GetMapping`, `PostMapping`, `PutMapping`, `DeleteMapping`, and `PatchMapping`) are reachable remotely. This class should be analyzed to make sure that remotely exposed methods are safe to expose to potential attackers.\n\nPerform input validation to ensure only properly formed data is entering the workflow in an information system, preventing malformed data from persisting in the database and triggering malfunction of various downstream components. Input validation should happen as early as possible in the data flow, preferably as soon as the data is received from the external party.\n\nData from all potentially untrusted sources should be subject to input validation, including not only Internet-facing web clients but also backend feeds over extranets, from suppliers, partners, vendors or regulators, each of which may be compromised on their own and start sending malformed data.\n\n\n## Solution (Bean Validation)\n\n```java\npublic class ExampleDto implements Serializable {\n    @Pattern(regexp = \"white list regular expression\")\n    @Size(min = minimum field size, max = maximum field size)\n    private String fieldName;\n}\n```\n\n## Solution (Validation Service or Method)\n\n```java\npublic boolean validateData(string data, String whiteListRegex) {\n    Pattern p = Pattern.compile(whiteListRegex);\n    Matcher m = p.matcher(data);\n    return m.matches();\n}\n```\n\n## In Context Remediation\n#### Fields to remediate: path\n### Field: path\n```\nField name: path\nValidation regex: path=\"^([a-zA-Z0-9\\s_\\\\.\\-\\(\\):])+(.json)$\"\nMinimum length: 1\nMaximum length: 500\n```\n#### Remediation 1\nHere is a simple example of how you can validate the \"path\" parameter using Java Bean Validation and regex pattern:\n\n```java\nimport javax.validation.constraints.*;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.validation.annotation.Validated;\nimport org.springframework.web.bind.annotation.*;\n\n@RestController\n@RequestMapping(\"/car-listing\")\n@Validated\npublic class CarListingController {\n\n    @GetMapping(\"/publishedFromFile\")\n    public ResponseEntity<String> publishedFromFile(\n            @RequestParam(defaultValue = \"car_listings_500.json\") \n            @Pattern(regexp = \"^([a-zA-Z0-9\\\\s_\\\\.-\\\\(\\\\):])+(.json)$\", message = \"Invalid path\")\n            @Size(min = 1, max = 500, message = \"Path length must be between 1 and 500\")\n            String path) {\n        // Your code here\n        return ResponseEntity.ok(\"Valid path\");\n    }\n}\n```\n\nThis code uses the `@Pattern` annotation to validate the \"path\" parameter against the provided regex pattern and `@Size` annotation to ensure the length of the parameter value is between 1 and 500 characters. The `@Validated` annotation is used at the class level to enable method-level validation.\n\nDependencies needed to run this application:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-validation</artifactId>\n    </dependency>\n</dependencies>\n```\n\nThis example assumes you are using Spring Boot and Maven. The `spring-boot-starter-web` dependency is for creating web applications using Spring MVC. The `spring-boot-starter-validation` dependency is for using Java Bean Validation.\n\n#### Remediation 2\nHere is a simple Java console application that validates the \"path\" parameter using a regex pattern and length check. This example uses Spring Boot framework.\n\n```java\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.bind.annotation.RestController;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport java.util.regex.Pattern;\n\n@RestController\npublic class CarListingController {\n\n    private static final String REGEX = \"^([a-zA-Z0-9\\\\s_\\\\.\\\\-\\\\(\\\\):])+(.json)$\";\n    private static final int MAX_LENGTH = 500;\n\n    @RequestMapping(\"/publishedFromFile\")\n    public ResponseEntity<String> publishedFromFile(@RequestParam(defaultValue = \"car_listings_500.json\") String path) {\n        if (!isValidPath(path)) {\n            return ResponseEntity.badRequest().body(\"Invalid path parameter\");\n        }\n        // process the path parameter\n        return ResponseEntity.ok(\"Path parameter is valid\");\n    }\n\n    private boolean isValidPath(String path) {\n        if (path.length() > MAX_LENGTH) {\n            return false;\n        }\n        Pattern pattern = Pattern.compile(REGEX);\n        return pattern.matcher(path).matches();\n    }\n}\n```\n\nTo run this application, you need the following dependencies:\n\n- Spring Boot Starter Web\n- Spring Boot Starter Test (for testing)\n\nYou can add these dependencies in your Maven `pom.xml` file:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-test</artifactId>\n        <scope>test</scope>\n    </dependency>\n</dependencies>\n```\n\nPlease note that this is a simple example and does not include error handling, logging, and other best practices for production-ready code.\n\n___\n\n\n## References\n- [OWASP: REST Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [OWASP: Bean Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Bean_Validation_Cheat_Sheet.html)\n\n\n"
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "LOW",
+                "kind": "FAIL"
+              }
+            },
+            {
+              "id": "aec8db07-68e9-30fd-b738-bf4b16939065",
+              "name": "Use of Object Deserialization in {1} Vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe \"Use of Object Deserialization in {1} Vulnerability\" in Java refers to a situation where an application deserializes data from an untrusted source without proper validation and sanitization. This can lead to various types of attacks, including arbitrary code execution, privilege escalation, and denial of service attacks. The specific vulnerability sink in this case is the `readObject()` method, which is used to deserialize data.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should avoid deserializing data from untrusted sources. If this is not possible, you should use safe deserialization mechanisms that only allow deserialization of safe classes. You should also use input validation and sanitization to ensure that the deserialized data does not contain malicious code.\n\n## Source Code Fix Recommendation\n\nInstead of using the `readObject()` method, you can use a safe deserialization library like Apache Commons Lang's `SerializationUtils`. Here is an example:\n\n```java\nimport org.apache.commons.lang3.SerializationUtils;\n\n// ...\n\nbyte[] data = ... // the data to deserialize\nObject o = SerializationUtils.deserialize(data);\n```\n\nThis will only deserialize data that can be safely deserialized.\n\n## Library Dependencies\n\nThe above code example requires the following library:\n\n- Apache Commons Lang 3\n\n## OWASP Resources\n\n- [Deserialization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html)\n- [Insecure Deserialization](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization)\n\n## CWE\n\n- [CWE-502: Deserialization of Untrusted Data](https://cwe.mitre.org/data/definitions/502.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-502",
+                    "url": "https://cwe.mitre.org/data/definitions/502.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-502"
+                ]
+              }
+            },
+            {
+              "id": "d80cb999-462e-3935-aa7e-fa41d4510302",
+              "name": "Spring Endpoint Vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nSpring Endpoint Vulnerability is a security issue that can occur in applications using the Spring Framework. This vulnerability can allow an attacker to gain unauthorized access to sensitive data or execute arbitrary code. It typically arises when an application exposes sensitive information through its endpoints, or when it fails to properly validate or sanitize input received through these endpoints.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, developers should:\n\n1. Limit the exposure of sensitive information through application endpoints.\n2. Implement proper input validation and sanitization to prevent injection attacks.\n3. Use authentication and authorization mechanisms to restrict access to sensitive endpoints.\n4. Regularly update the Spring Framework to the latest version to benefit from security patches.\n\n## Source Code Fix Recommendation\n\nThe specific vulnerability sink `setEventId(UUID.randomUUID().toString())` does not seem to be directly related to a Spring Endpoint Vulnerability. However, if this code is part of an exposed endpoint that does not implement proper access controls, it could potentially be exploited.\n\nTo mitigate this, you could add authentication and authorization checks before this code is executed. Here is an example using Spring Security:\n\n```java\nimport org.springframework.security.access.prepost.PreAuthorize;\n\n@PreAuthorize(\"hasRole('ROLE_USER')\")\npublic void secureMethod() {\n    setEventId(UUID.randomUUID().toString());\n}\n```\n\nIn this example, the `@PreAuthorize` annotation ensures that only authenticated users with the 'ROLE_USER' role can access the `secureMethod()` method.\n\n## Library Dependencies\n\nThe following libraries are required for the code example:\n\n- Spring Framework\n- Spring Security\n- Java UUID library (built into Java)\n\n## OWASP and CWE Resources\n\n- [OWASP Top Ten 2017: A6 - Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [CWE-285: Improper Authorization](https://cwe.mitre.org/data/definitions/285.html)\n\nPlease note that the links provided are subject to change and may not be accessible at all times."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-285",
+                    "url": "https://cwe.mitre.org/data/definitions/285.html"
+                  }
+                ],
+                "severity": "LOW",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-285"
+                ]
+              }
+            },
+            {
+              "id": "cfdc29b7-1a2c-39ce-b563-a53e45eca729",
+              "name": "Found Spring endpoint",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nThis class is a Spring Controller. All methods annotated with `RequestMapping` (as well as its shortcut annotations `GetMapping`, `PostMapping`, `PutMapping`, `DeleteMapping`, and `PatchMapping`) are reachable remotely. This class should be analyzed to make sure that remotely exposed methods are safe to expose to potential attackers.\n\nPerform input validation to ensure only properly formed data is entering the workflow in an information system, preventing malformed data from persisting in the database and triggering malfunction of various downstream components. Input validation should happen as early as possible in the data flow, preferably as soon as the data is received from the external party.\n\nData from all potentially untrusted sources should be subject to input validation, including not only Internet-facing web clients but also backend feeds over extranets, from suppliers, partners, vendors or regulators, each of which may be compromised on their own and start sending malformed data.\n\n\n## Solution (Bean Validation)\n\n```java\npublic class ExampleDto implements Serializable {\n    @Pattern(regexp = \"white list regular expression\")\n    @Size(min = minimum field size, max = maximum field size)\n    private String fieldName;\n}\n```\n\n## Solution (Validation Service or Method)\n\n```java\npublic boolean validateData(string data, String whiteListRegex) {\n    Pattern p = Pattern.compile(whiteListRegex);\n    Matcher m = p.matcher(data);\n    return m.matches();\n}\n```\n\n## In Context Remediation\n#### Fields to remediate: make, model, sort\n### Field: make\n```\nField name: make\nValidation regex: make=\"^[a-zA-Z\\s]+$\"\nMinimum length: 1\nMaximum length: 50\n```\n#### Remediation 1\nHere is a simple example of how you can validate the \"make\" parameter using Java Bean Validation and regex pattern:\n\n```java\nimport javax.validation.constraints.*;\nimport org.springframework.data.domain.*;\nimport org.springframework.web.bind.annotation.*;\nimport com.smg.car_listing.dto.CarListingDTO;\n\n@RestController\n@RequestMapping(\"/car-listing\")\npublic class CarListingController {\n\n    @GetMapping(\"/search\")\n    public Page<CarListingDTO> search(\n        @RequestParam(required = false) @Pattern(regexp = \"^[a-zA-Z\\\\s]+$\") @Size(min = 1, max = 50) String make,\n        @RequestParam(required = false) String model,\n        @RequestParam(required = false) Integer yearFrom,\n        @RequestParam(required = false) Integer yearTo,\n        @RequestParam(defaultValue = \"0\") int page,\n        @RequestParam(defaultValue = \"20\") int size,\n        @RequestParam(required = false) String sort) {\n        \n        // Your search logic here\n    }\n}\n```\n\nIn this example, `@Pattern` annotation is used to apply the regex pattern and `@Size` annotation is used to validate the length of the \"make\" parameter.\n\nDependencies needed to run this application:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-data-jpa</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.hibernate.validator</groupId>\n        <artifactId>hibernate-validator</artifactId>\n        <version>6.0.17.Final</version>\n    </dependency>\n</dependencies>\n```\n\nThis example assumes that you are using Spring Boot and Hibernate Validator for validation. The `spring-boot-starter-web` dependency is for creating a web application, `spring-boot-starter-data-jpa` is for accessing data using JPA, and `hibernate-validator` is for validation.\n\n#### Remediation 2\nHere is a simple example of how you can validate the \"make\" parameter using a custom validation service in a console application. \n\n```java\nimport java.util.regex.Pattern;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Sort;\nimport org.springframework.web.bind.annotation.RequestParam;\n\npublic class CarListingController {\n\n    private static final String MAKE_PATTERN = \"^[a-zA-Z\\\\s]+$\";\n\n    public Page<CarListingDTO> search(@RequestParam(required = false) String make,\n                                      @RequestParam(required = false) String model,\n                                      @RequestParam(required = false) Integer yearFrom,\n                                      @RequestParam(required = false) Integer yearTo,\n                                      @RequestParam(defaultValue = \"0\") int page,\n                                      @RequestParam(defaultValue = \"20\") int size,\n                                      @RequestParam(required = false) String sort) {\n\n        if (!isValidMake(make)) {\n            throw new IllegalArgumentException(\"Invalid make parameter\");\n        }\n\n        // Rest of the method implementation\n    }\n\n    private boolean isValidMake(String make) {\n        if (make == null || make.length() < 1 || make.length() > 50) {\n            return false;\n        }\n\n        Pattern pattern = Pattern.compile(MAKE_PATTERN);\n        return pattern.matcher(make).matches();\n    }\n}\n```\n\nThis example uses the Spring Framework, so you will need the following dependencies:\n\n- Spring Web\n- Spring Data JPA\n\nYou can add these dependencies to your project using Maven or Gradle. Here is an example of how to add them using Maven:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-data-jpa</artifactId>\n    </dependency>\n</dependencies>\n```\n\nPlease note that this is a simplified example and does not include the full implementation of the `search` method, the `CarListingDTO` class, or the setup of the Spring application.\n\n___\n### Field: model\n```\nField name: model\nValidation regex: model=\"^[a-zA-Z0-9\\s]{1,50}$\"\nMinimum length: 1\nMaximum length: 50\n```\n#### Remediation 1\nHere is a simple example of how you can validate the \"model\" parameter using Java Bean Validation and regex pattern. \n\n```java\nimport javax.validation.constraints.Pattern;\nimport javax.validation.constraints.Size;\nimport org.springframework.data.domain.Page;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.bind.annotation.RestController;\nimport com.smg.car_listing.dto.CarListingDTO;\n\n@RestController\npublic class CarListingController {\n\n    @Pattern(regexp = \"^[a-zA-Z0-9\\\\s]{1,50}$\", message = \"Invalid model\")\n    @Size(min = 1, max = 50, message = \"Model must be between 1 and 50 characters long\")\n    public Page<CarListingDTO> search(\n        @RequestParam(required = false) String make, \n        @RequestParam(required = false) String model, \n        @RequestParam(required = false) Integer yearFrom, \n        @RequestParam(required = false) Integer yearTo, \n        @RequestParam(defaultValue = \"0\") int page, \n        @RequestParam(defaultValue = \"20\") int size, \n        @RequestParam(required = false) String sort) {\n        \n        // Your search logic here\n    }\n}\n```\n\nTo use Java Bean Validation, you need to add the following dependencies to your `pom.xml`:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-data-jpa</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.hibernate.validator</groupId>\n        <artifactId>hibernate-validator</artifactId>\n        <version>6.0.17.Final</version>\n    </dependency>\n    <dependency>\n        <groupId>org.hibernate.validator</groupId>\n        <artifactId>hibernate-validator-annotation-processor</artifactId>\n        <version>6.0.17.Final</version>\n    </dependency>\n</dependencies>\n```\n\nPlease note that the validation annotations (`@Pattern` and `@Size`) are placed on the method itself, not on the parameters. This is because the validation should be applied to the method as a whole, not to individual parameters. Also, the `@RestController` annotation is used to indicate that this class is a controller that should handle HTTP requests.\n\n#### Remediation 2\nHere is a simple example of how you can validate the \"model\" parameter using a custom validation service in a console application. \n\n```java\nimport java.util.regex.Pattern;\nimport org.springframework.data.domain.Page;\nimport org.springframework.data.domain.PageRequest;\nimport org.springframework.data.domain.Sort;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport com.smg.car_listing.dto.CarListingDTO;\nimport com.smg.car_listing.controller.CarListingController;\n\npublic class CarListingController {\n\n    private static final String MODEL_REGEX = \"^[a-zA-Z0-9\\\\s]{1,50}$\";\n    private static final Pattern MODEL_PATTERN = Pattern.compile(MODEL_REGEX);\n\n    public Page<CarListingDTO> search(@RequestParam(required = false) String make, \n                                      @RequestParam(required = false) String model, \n                                      @RequestParam(required = false) Integer yearFrom, \n                                      @RequestParam(required = false) Integer yearTo, \n                                      @RequestParam(defaultValue = \"0\") int page, \n                                      @RequestParam(defaultValue = \"20\") int size, \n                                      @RequestParam(required = false) String sort) {\n        if (!isValidModel(model)) {\n            throw new IllegalArgumentException(\"Invalid model parameter\");\n        }\n        // Continue with the search operation\n    }\n\n    private boolean isValidModel(String model) {\n        return model != null && MODEL_PATTERN.matcher(model).matches();\n    }\n}\n```\n\nThis example uses the Spring Framework, so you will need the following dependencies:\n\n- Spring Web\n- Spring Data JPA\n- Your preferred database connector (e.g., MySQL Connector/J for MySQL databases)\n\nYou can add these dependencies to your Maven `pom.xml` or Gradle `build.gradle` file. Here is an example for Maven:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-data-jpa</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>mysql</groupId>\n        <artifactId>mysql-connector-java</artifactId>\n        <scope>runtime</scope>\n    </dependency>\n</dependencies>\n```\n\nPlease note that this is a simple example and does not include the full implementation of the `search` method or the `CarListingDTO` class.\n\n___\n### Field: sort\n```\nField name: sort\nValidation regex: sort=\"^[a-zA-Z0-9_]+$\"\nMinimum length: 1\nMaximum length: 50\n```\n#### Remediation 1\nHere is a simple example of how you can validate the \"sort\" parameter using Java Bean Validation and regex pattern. \n\n```java\nimport javax.validation.constraints.*;\nimport org.springframework.web.bind.annotation.*;\nimport org.springframework.data.domain.*;\n\n@RestController\n@RequestMapping(\"/cars\")\npublic class CarListingController {\n\n    @GetMapping(\"/search\")\n    public Page<CarListingDTO> search(\n        @RequestParam(required = false) String make, \n        @RequestParam(required = false) String model, \n        @RequestParam(required = false) Integer yearFrom, \n        @RequestParam(required = false) Integer yearTo, \n        @RequestParam(defaultValue = \"0\") int page, \n        @RequestParam(defaultValue = \"20\") int size, \n        @RequestParam(required = false) @Pattern(regexp = \"^[a-zA-Z0-9_]+$\", message = \"Invalid sort parameter\") @Size(min = 1, max = 50, message = \"Sort parameter length must be between 1 and 50\") String sort) {\n        \n        // Your search logic here\n    }\n}\n```\n\nIn this example, `@Pattern` annotation is used to validate the \"sort\" parameter against the provided regex pattern. `@Size` annotation is used to ensure the length of the \"sort\" parameter is between 1 and 50 characters.\n\nDependencies needed to run this application:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-data-jpa</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.hibernate.validator</groupId>\n        <artifactId>hibernate-validator</artifactId>\n        <version>6.0.17.Final</version>\n    </dependency>\n</dependencies>\n```\n\nThis example assumes that you are using Spring Boot and Hibernate Validator for bean validation. The `spring-boot-starter-web` dependency is for creating web applications using Spring MVC. The `spring-boot-starter-data-jpa` dependency is for accessing data with JPA. The `hibernate-validator` dependency is for bean validation.\n\n#### Remediation 2\nHere is a simple example of how you can validate the \"sort\" parameter using a custom validation method in Java:\n\n```java\nimport org.springframework.data.domain.Page;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.bind.annotation.RestController;\nimport com.smg.car_listing.dto.CarListingDTO;\nimport java.util.regex.Pattern;\n\n@RestController\npublic class CarListingController {\n\n    private static final Pattern SORT_PATTERN = Pattern.compile(\"^[a-zA-Z0-9_]+$\");\n\n    public Page<CarListingDTO> search(\n            @RequestParam(required = false) String make,\n            @RequestParam(required = false) String model,\n            @RequestParam(required = false) Integer yearFrom,\n            @RequestParam(required = false) Integer yearTo,\n            @RequestParam(defaultValue = \"0\") int page,\n            @RequestParam(defaultValue = \"20\") int size,\n            @RequestParam(required = false) String sort) {\n\n        validateSortParameter(sort);\n\n        // Rest of the method implementation\n    }\n\n    private void validateSortParameter(String sort) {\n        if (sort != null) {\n            if (sort.length() < 1 || sort.length() > 50) {\n                throw new IllegalArgumentException(\"Sort parameter length must be between 1 and 50 characters\");\n            }\n\n            if (!SORT_PATTERN.matcher(sort).matches()) {\n                throw new IllegalArgumentException(\"Invalid sort parameter. Only alphanumeric characters and underscores are allowed\");\n            }\n        }\n    }\n}\n```\n\nThis example uses Spring Boot's `@RestController` and `@RequestParam` annotations to define a RESTful API endpoint. The `validateSortParameter` method is used to validate the \"sort\" parameter against the provided regex pattern and length constraints.\n\nDependencies needed to run this application:\n\n- Spring Boot Starter Web\n- Spring Data JPA\n\nYou can add these dependencies to your Maven `pom.xml` file:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-web</artifactId>\n    </dependency>\n    <dependency>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-data-jpa</artifactId>\n    </dependency>\n</dependencies>\n```\n\nPlease note that this is a simplified example and does not include the full implementation of the `search` method and the `CarListingDTO` class.\n\n___\n\n\n## References\n- [OWASP: REST Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [OWASP: Bean Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Bean_Validation_Cheat_Sheet.html)\n\n\n"
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "LOW",
+                "kind": "FAIL"
+              }
+            },
+            {
+              "id": "c5bd29a5-0108-3df6-8db2-084ba426dae1",
+              "name": "Found Spring endpoint",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nThis class is a Spring Controller. All methods annotated with `RequestMapping` (as well as its shortcut annotations `GetMapping`, `PostMapping`, `PutMapping`, `DeleteMapping`, and `PatchMapping`) are reachable remotely. This class should be analyzed to make sure that remotely exposed methods are safe to expose to potential attackers.\n\nPerform input validation to ensure only properly formed data is entering the workflow in an information system, preventing malformed data from persisting in the database and triggering malfunction of various downstream components. Input validation should happen as early as possible in the data flow, preferably as soon as the data is received from the external party.\n\nData from all potentially untrusted sources should be subject to input validation, including not only Internet-facing web clients but also backend feeds over extranets, from suppliers, partners, vendors or regulators, each of which may be compromised on their own and start sending malformed data.\n\n\n## Solution (Bean Validation)\n\n```java\npublic class ExampleDto implements Serializable {\n    @Pattern(regexp = \"white list regular expression\")\n    @Size(min = minimum field size, max = maximum field size)\n    private String fieldName;\n}\n```\n\n## Solution (Validation Service or Method)\n\n```java\npublic boolean validateData(string data, String whiteListRegex) {\n    Pattern p = Pattern.compile(whiteListRegex);\n    Matcher m = p.matcher(data);\n    return m.matches();\n}\n```\n\n## In Context Remediation\n#### Fields to remediate: token\n### Field: token\n```\nField name: token\nValidation regex: token=\"^[a-zA-Z0-9-_]*$\"\nMinimum length: 32\nMaximum length: 32\n```\n#### Remediation 1\nHere is a simple example of how you can validate the \"token\" parameter using Java:\n\n```java\nimport java.io.IOException;\nimport java.util.regex.Pattern;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport com.smg.car_listing.dummy.InsecureDeserializationTask.AttackResult;\n\npublic class TokenValidation {\n    private static final Pattern TOKEN_PATTERN = Pattern.compile(\"^[a-zA-Z0-9-_]*$\");\n\n    public AttackResult completed(@RequestParam String token) throws IOException {\n        if (!isValidToken(token)) {\n            throw new IllegalArgumentException(\"Invalid token\");\n        }\n        // Rest of the method implementation\n    }\n\n    private boolean isValidToken(String token) {\n        return token != null && TOKEN_PATTERN.matcher(token).matches() && token.length() == 32;\n    }\n}\n```\n\nThis code uses the `Pattern` class from `java.util.regex` package to compile the regex pattern and then uses the `matcher` method to check if the token matches the pattern. It also checks if the length of the token is exactly 32 characters.\n\nDependencies needed to run this application:\n\n- Java Development Kit (JDK) 8 or later\n- Spring Framework 5.2.9 or later\n\nPlease note that this is a simple example and does not include other security measures such as encryption or hashing of the token, which you might want to consider in a real-world application. Also, the `completed` method is assumed to be part of a Spring MVC controller, which is not shown in this example.\n\n#### Remediation 2\nHere is a simple Java console application that validates the \"token\" parameter using the provided regex pattern. The application uses the Java's built-in `Pattern` and `Matcher` classes for regex matching.\n\n```java\nimport java.io.IOException;\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class Main {\n    public static void main(String[] args) throws IOException {\n        String token = args[0];\n        Main main = new Main();\n        boolean isValid = main.validateToken(token);\n        System.out.println(\"Token is valid: \" + isValid);\n    }\n\n    public boolean validateToken(String token) {\n        String pattern = \"^[a-zA-Z0-9-_]*$\";\n        Pattern compiledPattern = Pattern.compile(pattern);\n        Matcher matcher = compiledPattern.matcher(token);\n        return matcher.matches() && token.length() == 32;\n    }\n}\n```\n\nTo run this application, you need to have Java Development Kit (JDK) installed on your machine. You can download it from the official Oracle website. After installing JDK, you can compile the Java file using the `javac` command and run it using the `java` command.\n\nHere are the steps to compile and run the application:\n\n1. Save the above code in a file named `Main.java`.\n2. Open a terminal and navigate to the directory containing the `Main.java` file.\n3. Compile the Java file using the command `javac Main.java`. This will create a `Main.class` file in the same directory.\n4. Run the application using the command `java Main <token>`, replacing `<token>` with the token you want to validate.\n\nPlease note that this is a very basic application and does not include any error handling or user prompts. It is meant to be a simple demonstration of how to validate a token using a regex pattern in Java.\n\n___\n\n\n## References\n- [OWASP: REST Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [OWASP: Bean Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Bean_Validation_Cheat_Sheet.html)\n\n\n"
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "LOW",
+                "kind": "FAIL"
+              }
+            },
+            {
+              "id": "fa48d430-a3f2-35b9-9aca-5c88da58abbc",
+              "name": "Potential CRLF Injection for logs",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nThe term CRLF refers to Carriage Return (ASCII 13, \\r) Line Feed (ASCII 10, \\n). They're used to note the termination of a line, however, dealt with differently in today’s popular Operating Systems. For example: in Windows both a CR and LF are required to note the end of a line, whereas in Linux/UNIX a LF is only required. In the HTTP protocol, the CR-LF sequence is always used to terminate a line.\n\nA CRLF Injection attack occurs when a user manages to submit a CRLF into an application. This is most commonly done by modifying an HTTP parameter or URL.\n\n**Prevention (Output encoding):**\n\n```\nUsing the Pattern 'encode{}{CRLF}', introduced in Log4j2 v2.10.0, and the -500m message size limit.\n```\n\n**Solution (Output encoding):**\n\n```java\npublic String encode(String message) {\n    message = Encoder.forJava(message);\n    return message;\n}\n```\n\n## In Context Remediation\n```\nParameter name: line\nAllowed commands: org.owasp.encoder.Encode.forJava(line)\n```\n#### Remediation\nHere is an example of how you can use `org.owasp.encoder.Encode` to encode a parameter:\n\n```java\nimport java.io.ObjectInputStream;\nimport org.owasp.encoder.Encode;\n\npublic class VulnerableTaskHolder {\n    private void readObject(ObjectInputStream stream) throws Exception {\n        String line = (String) stream.readObject();\n        String encodedLine = Encode.forJava(line);\n        System.out.println(encodedLine);\n    }\n\n    public static void main(String[] args) throws Exception {\n        ObjectInputStream ois = new ObjectInputStream(System.in);\n        new VulnerableTaskHolder().readObject(ois);\n    }\n}\n```\n\nIn this example, we read a string from the input stream and then encode it using `Encode.forJava(line)`. The encoded string is then printed to the console.\n\nThe `org.owasp.encoder.Encode` class provides several methods for encoding strings depending on the context:\n\n- `forHtml(String)` - Encodes a string for safe use in HTML content.\n- `forHtmlContent(String)` - Encodes a string for safe use in HTML content, excluding HTML attributes.\n- `forHtmlAttribute(String)` - Encodes a string for safe use in an HTML attribute.\n- `forCssString(String)` - Encodes a string for safe use in a CSS string.\n- `forCssUrl(String)` - Encodes a string for safe use in a CSS URL.\n- `forUriComponent(String)` - Encodes a string for safe use in a URI component.\n- `forXml(String)` - Encodes a string for safe use in XML content.\n- `forXmlAttribute(String)` - Encodes a string for safe use in an XML attribute.\n- `forJava(String)` - Encodes a string for safe use in Java source code.\n\nTo run this application, you need to include the OWASP Java Encoder library in your project. Here is the Maven dependency for your `pom.xml`:\n\n```xml\n<dependency>\n    <groupId>org.owasp.encoder</groupId>\n    <artifactId>encoder</artifactId>\n    <version>1.2.2</version>\n</dependency>\n```\n\nPlease replace the version with the latest available version.\n\n___\n\n\n**References**\n\n- [OWASP: CRLF Injection](https://owasp.org/www-community/vulnerabilities/CRLF_Injection)\n- [OWASP: Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)\n- [OWASP Java Encoder](https://owasp.org/www-project-java-encoder/)\n- [OWASP Enterprise Security API (ESAPI)](https://owasp.org/www-project-enterprise-security-api/)\n- [Log4j2 configuration](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html#injection-prevention-in-java)\n\n\n"
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "MEDIUM",
+                "kind": "FAIL"
+              }
+            },
+            {
+              "id": "8a773c21-b0b2-373c-9699-8c03ccd1d231",
+              "name": "Potential CRLF Injection for logs",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nThe term CRLF refers to Carriage Return (ASCII 13, \\r) Line Feed (ASCII 10, \\n). They're used to note the termination of a line, however, dealt with differently in today’s popular Operating Systems. For example: in Windows both a CR and LF are required to note the end of a line, whereas in Linux/UNIX a LF is only required. In the HTTP protocol, the CR-LF sequence is always used to terminate a line.\n\nA CRLF Injection attack occurs when a user manages to submit a CRLF into an application. This is most commonly done by modifying an HTTP parameter or URL.\n\n**Prevention (Output encoding):**\n\n```\nUsing the Pattern 'encode{}{CRLF}', introduced in Log4j2 v2.10.0, and the -500m message size limit.\n```\n\n**Solution (Output encoding):**\n\n```java\npublic String encode(String message) {\n    message = Encoder.forJava(message);\n    return message;\n}\n```\n\n## In Context Remediation\n```\nParameter name: this.toString()\nAllowed commands: org.owasp.encoder.Encode.forJava(this.toString())\n```\n#### Remediation\nHere is an example of how you can use `org.owasp.encoder.Encode` to encode `this.toString()` in the `readObject` method of `VulnerableTaskHolder` class.\n\n```java\npackage com.smg.car_listing.dummy;\n\nimport org.owasp.encoder.Encode;\nimport java.io.ObjectInputStream;\n\npublic class VulnerableTaskHolder {\n    private void readObject(ObjectInputStream stream) throws Exception {\n        String encodedString = Encode.forJava(this.toString());\n        System.out.println(encodedString);\n    }\n\n    @Override\n    public String toString() {\n        return \"VulnerableTaskHolder{}\";\n    }\n\n    public static void main(String[] args) throws Exception {\n        VulnerableTaskHolder holder = new VulnerableTaskHolder();\n        holder.readObject(null);\n    }\n}\n```\n\nIn this example, `Encode.forJava(this.toString())` is used to encode `this.toString()`. If this method is not suitable, you can use other methods from `org.owasp.encoder.Encode` depending on the context:\n\n- `forHtml(String)` - Encodes for HTML text content and attribute values.\n- `forHtmlContent(String)` - Encodes for HTML text content.\n- `forHtmlAttribute(String)` - Encodes for HTML attribute values.\n- `forCssString(String)` - Encodes for CSS strings.\n- `forCssUrl(String)` - Encodes for CSS URLs.\n- `forUri(String)` - Encodes for URI.\n- `forUriComponent(String)` - Encodes for a URI component.\n- `forXml(String)` - Encodes for XML text content and attribute values.\n- `forXmlAttribute(String)` - Encodes for XML attribute values.\n- `forXmlContent(String)` - Encodes for XML text content.\n- `forJavaScript(String)` - Encodes for JavaScript.\n\nThe necessary dependency for this application is:\n\n```xml\n<dependencies>\n    <dependency>\n        <groupId>org.owasp.encoder</groupId>\n        <artifactId>encoder</artifactId>\n        <version>1.2.2</version>\n    </dependency>\n</dependencies>\n```\n\nThis dependency should be added to your `pom.xml` file.\n\n___\n\n\n**References**\n\n- [OWASP: CRLF Injection](https://owasp.org/www-community/vulnerabilities/CRLF_Injection)\n- [OWASP: Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)\n- [OWASP Java Encoder](https://owasp.org/www-project-java-encoder/)\n- [OWASP Enterprise Security API (ESAPI)](https://owasp.org/www-project-enterprise-security-api/)\n- [Log4j2 configuration](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html#injection-prevention-in-java)\n\n\n"
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "LOW",
+                "kind": "FAIL"
+              }
+            },
+            {
+              "id": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
+              "name": "Potential Command Injection",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nCommand injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell. In this attack, the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application. Command injection attacks are possible largely due to insufficient input validation.\n\nAssume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use a list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does.\n\nWhen performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if the input is only expected to contain colors such as \"red\" or \"blue.\"\n\nDo not rely exclusively on looking for malicious or malformed inputs. This is likely to miss at least one undesirable input, especially if the code's environment changes. This can give attackers enough room to bypass the intended validation. However, denylists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.\n\n## Solution (Input Validation)\n\n```java\n\n    // Predefined whitelist of allowed commands\n    private static final Set<String> ALLOWED_COMMANDS = new HashSet<>();\n\n    public boolean validateCommand(String command) {\n        // Check if the command is in the whitelist\n        return ALLOWED_COMMANDS.contains(command);\n    }\n```\n\n## In Context Remediation\n```\nParameter name: p\nAllowed commands: Windows: type, more, find; Linux: cat, more, grep\n```\n#### Remediation\nHere is a simple example of how you can implement a whitelist of allowed OS commands in Java. This example uses the ProcessBuilder class to execute the commands.\n\n```java\nimport java.io.BufferedReader;\nimport java.io.InputStreamReader;\nimport java.io.ObjectInputStream;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class VulnerableTaskHolder {\n    private static final List<String> ALLOWED_WINDOWS_COMMANDS = Arrays.asList(\"type\", \"more\", \"find\");\n    private static final List<String> ALLOWED_LINUX_COMMANDS = Arrays.asList(\"cat\", \"more\", \"grep\");\n\n    private void readObject(ObjectInputStream stream) throws Exception {\n        String command = (String) stream.readObject();\n        String os = System.getProperty(\"os.name\").toLowerCase();\n\n        List<String> allowedCommands = os.contains(\"win\") ? ALLOWED_WINDOWS_COMMANDS : ALLOWED_LINUX_COMMANDS;\n\n        if (!allowedCommands.contains(command.split(\" \")[0])) {\n            throw new Exception(\"Command not allowed\");\n        }\n\n        ProcessBuilder processBuilder = new ProcessBuilder(command.split(\" \"));\n        Process process = processBuilder.start();\n\n        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));\n        String line;\n        while ((line = reader.readLine()) != null) {\n            System.out.println(line);\n        }\n    }\n}\n```\n\nThis code reads a command from an ObjectInputStream, checks if the command is in the whitelist for the current OS, and then executes the command if it is allowed. The output of the command is then printed to the console.\n\nThis code should be run in a console application. It does not require any additional dependencies beyond the standard Java libraries.\n\nPlease note that this is a very basic example and does not include any error handling or security measures beyond the command whitelist. In a real-world application, you would need to implement additional security measures to prevent command injection attacks.\n\n___\n```\nParameter name: Runtime.getRuntime().exec(taskAction)\nAllowed commands: Windows: cmd.exe, powershell.exe; Linux: bash, sh, zsh\n```\n#### Remediation\nHere is a simple example of how you can implement a whitelist of allowed OS commands in Java. This example uses a console application.\n\n```java\nimport java.io.IOException;\nimport java.io.ObjectInputStream;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class VulnerableTaskHolder {\n    private String taskAction;\n\n    private void readObject(ObjectInputStream stream) throws Exception {\n        taskAction = (String) stream.readObject();\n        validateCommand(taskAction);\n        Runtime.getRuntime().exec(taskAction);\n    }\n\n    private void validateCommand(String command) throws Exception {\n        List<String> allowedCommands;\n        String os = System.getProperty(\"os.name\").toLowerCase();\n\n        if (os.contains(\"win\")) {\n            allowedCommands = Arrays.asList(\"cmd.exe\", \"powershell.exe\");\n        } else if (os.contains(\"nix\") || os.contains(\"nux\") || os.contains(\"mac\")) {\n            allowedCommands = Arrays.asList(\"bash\", \"sh\", \"zsh\");\n        } else {\n            throw new Exception(\"Unsupported operating system\");\n        }\n\n        if (!allowedCommands.contains(command)) {\n            throw new Exception(\"Command not allowed\");\n        }\n    }\n\n    public static void main(String[] args) throws Exception {\n        VulnerableTaskHolder holder = new VulnerableTaskHolder();\n        holder.readObject(new ObjectInputStream(System.in));\n    }\n}\n```\n\nThis application doesn't require any additional dependencies, it uses only standard Java libraries. \n\nPlease note that this is a very basic example and might not cover all possible security issues. For example, it doesn't check for command arguments, so a user might still be able to execute a disallowed command by passing it as an argument to an allowed command. Also, it doesn't handle the case when a user tries to execute a command from a different directory. You might want to improve this code to make it more secure.\n\n___\n\n\n## References\n- [OWASP: Command Injection](https://owasp.org/www-community/attacks/Command_Injection)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [CWE-77: Command Injection](https://cwe.mitre.org/data/definitions/77.html)\n\n\n"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-77",
+                    "url": "https://cwe.mitre.org/data/definitions/77.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-77"
+                ]
+              }
+            },
+            {
+              "id": "66c8aa25-37d5-3f8d-8ada-e6b3e079e4ba",
+              "name": "This class could be used as deserialization gadget",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Java, \"This class could be used as deserialization gadget\" vulnerability refers to a situation where an attacker can exploit the deserialization process of certain classes to execute arbitrary code, alter data, or perform other malicious activities. This vulnerability arises when an application deserializes data from an untrusted source without proper validation or sanitization.\n\nDeserialization is the process of converting a stream of bytes back into a copy of the original object. A \"deserialization gadget\" is a class that can be manipulated during the deserialization process to execute unintended code or perform unauthorized actions.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, follow these general guidelines:\n\n1. Avoid deserializing data from untrusted sources.\n2. Implement input validation or sanitization before deserializing data.\n3. Use safe alternatives to Java's native deserialization, such as JSON or XML data formats.\n4. Restrict or monitor access to sensitive classes that can be used as deserialization gadgets.\n5. Apply the latest security patches and updates to your Java environment.\n\n## Source Code Fix Recommendation\n\nConsider using a look-ahead deserialization process that does not execute methods within serializable classes. For example, you can use a library like `not-so-serial` to prevent deserialization of certain classes:\n\n```java\nNSSConfigurator.configure(\"blacklist.conf\");\n```\n\nIn the `blacklist.conf` file, you can specify classes that should not be deserialized:\n\n```\ncom.example.SomeClass\ncom.example.SomeOtherClass\n```\n\n## OWASP Resources\n\n- [OWASP Deserialization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html)\n- [OWASP Java Deserialization Vulnerabilities](https://owasp.org/www-project-top-ten/2017/A8_2017-Insecure_Deserialization)\n\n## Common Weakness Enumeration (CWE)\n\n- [CWE-502: Deserialization of Untrusted Data](https://cwe.mitre.org/data/definitions/502.html)\n\nPlease note that the provided links are active and accessible for anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-502",
+                    "url": "https://cwe.mitre.org/data/definitions/502.html"
+                  }
+                ],
+                "severity": "LOW",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-502"
+                ]
+              }
+            }
+          ],
           "language": "en-US",
           "contents": [
             "localizedData",
@@ -20,7 +179,393 @@
         }
       },
       "language": "en-US",
-      "results": [],
+      "results": [
+        {
+          "ruleId": "d7725477-9776-3792-9d79-96f5b42cdbd1",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Found Spring endpoint",
+            "id": "default",
+            "arguments": [
+              "com.smg.car_listing.controller.CarListingController"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/controller/CarListingController.java"
+                },
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 13,
+                  "endLine": 57,
+                  "endColumn": 54,
+                  "snippet": {
+                    "text": "Resource res = new ClassPathResource(path)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "publishedFromFile(String)",
+                  "fullyQualifiedName": "com.smg.car_listing.controller.CarListingController.publishedFromFile(String)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "13d6fc8e760644cb68baa770456a2651b48f62651da5f33a2414174f2913929e",
+            "glog-pfp-ruleFileCode/v1": "2445b9a94c92139480d1f11405950970471424ec344139ff7e70d6996a9b6441"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "2445b9a94c92139480d1f11405950970471424ec344139ff7e70d6996a9b6441"
+          }
+        },
+        {
+          "ruleId": "aec8db07-68e9-30fd-b738-bf4b16939065",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Use of Object Deserialization in {1} Vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/InsecureDeserializationTask.java"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 13,
+                  "endLine": 34,
+                  "endColumn": 39,
+                  "snippet": {
+                    "text": "Object o = ois.readObject()"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "completed(String)",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.InsecureDeserializationTask.completed(String)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "8d55fcdf9d2ac596857d4bf602a00bb4f914deaf403e2035361105f88cdc7e02",
+            "glog-pfp-ruleFileCode/v1": "c3b02d1face825a56d259a21c58022f31187b6148aea8129d5227f8424bff784"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "c3b02d1face825a56d259a21c58022f31187b6148aea8129d5227f8424bff784"
+          }
+        },
+        {
+          "ruleId": "d80cb999-462e-3935-aa7e-fa41d4510302",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Spring Endpoint Vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/controller/CarListingController.java"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 13,
+                  "endLine": 36,
+                  "endColumn": 52,
+                  "snippet": {
+                    "text": "setEventId(UUID.randomUUID().toString())"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "send(CarListingEvent)",
+                  "fullyQualifiedName": "com.smg.car_listing.controller.CarListingController.send(CarListingEvent)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "b89f5313b975ede4da95fc18821b691ae76d0e2f83c6fd0ae630432a05ce4d0f",
+            "glog-pfp-ruleFileCode/v1": "3ec70e6f913cb1553ac4c704dad8e9db46e6dec3ea6edd0bc56040cb87bfb54c"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "3ec70e6f913cb1553ac4c704dad8e9db46e6dec3ea6edd0bc56040cb87bfb54c"
+          }
+        },
+        {
+          "ruleId": "cfdc29b7-1a2c-39ce-b563-a53e45eca729",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Found Spring endpoint",
+            "id": "default",
+            "arguments": [
+              "com.smg.car_listing.controller.CarListingController"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/controller/CarListingController.java"
+                },
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 9,
+                  "endLine": 50,
+                  "endColumn": 79,
+                  "snippet": {
+                    "text": "return service.search(make, model, yearFrom, yearTo, page, size, sort);"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "search(String, String, Integer, Integer, int, int, String)",
+                  "fullyQualifiedName": "com.smg.car_listing.controller.CarListingController.search(String, String, Integer, Integer, int, int, String)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "c6070057a537fc96175caa8ede604d39ce02303f4361681a0c3c2e00cd35bc32",
+            "glog-pfp-ruleFileCode/v1": "97846ddfc2249f5cec8f787bf54143ffdb8302f8787c9ebc80906745f10c787c"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "97846ddfc2249f5cec8f787bf54143ffdb8302f8787c9ebc80906745f10c787c"
+          }
+        },
+        {
+          "ruleId": "c5bd29a5-0108-3df6-8db2-084ba426dae1",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Found Spring endpoint",
+            "id": "default",
+            "arguments": [
+              "com.smg.car_listing.dummy.InsecureDeserializationTask"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/InsecureDeserializationTask.java"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 9,
+                  "endLine": 29,
+                  "endColumn": 60,
+                  "snippet": {
+                    "text": "b64token = token.replace('-', '+').replace('_', '/')"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "completed(String)",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.InsecureDeserializationTask.completed(String)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "7d14cc3deaf54bbb21af3b5a267fc8889fc1829eb25e8921e7f9b824de7436de",
+            "glog-pfp-ruleFileCode/v1": "6ff7eacfbe67a7e54702ecfa18a5f329e32742ee36290775247a54f06ea7a8f0"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "6ff7eacfbe67a7e54702ecfa18a5f329e32742ee36290775247a54f06ea7a8f0"
+          }
+        },
+        {
+          "ruleId": "fa48d430-a3f2-35b9-9aca-5c88da58abbc",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Potential CRLF Injection for logs",
+            "id": "default",
+            "arguments": [
+              "org/slf4j/Logger.info(Ljava/lang/String;)V"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 25,
+                  "endLine": 66,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "info(line)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "readObject(ObjectInputStream)",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.VulnerableTaskHolder.readObject(ObjectInputStream)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "0587977848e3495834d41ae9f5f294cef191d61dda92e0a3ca3fb4d4fc5e0611",
+            "glog-pfp-ruleFileCode/v1": "ebc7c8e36469056b5a52309fc67e9486eef43978e26455697695f6583bd8cfde"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "ebc7c8e36469056b5a52309fc67e9486eef43978e26455697695f6583bd8cfde"
+          }
+        },
+        {
+          "ruleId": "8a773c21-b0b2-373c-9699-8c03ccd1d231",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Potential CRLF Injection for logs",
+            "id": "default",
+            "arguments": [
+              "org/slf4j/Logger.debug(Ljava/lang/String;)V"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
+                },
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 17,
+                  "endLine": 53,
+                  "endColumn": 38,
+                  "snippet": {
+                    "text": "debug(this.toString())"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "readObject(ObjectInputStream)",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.VulnerableTaskHolder.readObject(ObjectInputStream)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "246a32c2d58b8a9ade7382c21f6491cfa793c09f2af5916d3f4f66ffd2bc74dc",
+            "glog-pfp-ruleFileCode/v1": "21ea5fb7f3bf6e5130fa6cc19b23352b0a642a1f8e04eee026ec6c308a02494a"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "21ea5fb7f3bf6e5130fa6cc19b23352b0a642a1f8e04eee026ec6c308a02494a"
+          }
+        },
+        {
+          "ruleId": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Potential Command Injection",
+            "id": "default",
+            "arguments": [
+              "java/lang/Runtime.exec(Ljava/lang/String;)Ljava/lang/Process;"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
+                },
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 17,
+                  "endLine": 62,
+                  "endColumn": 65,
+                  "snippet": {
+                    "text": "Process p = Runtime.getRuntime().exec(taskAction)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "readObject(ObjectInputStream)",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.VulnerableTaskHolder.readObject(ObjectInputStream)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "4e5a4a6af9dab0a02d3437499a1eaf1b5ddc0981ea63127926c22fbc561dc401",
+            "glog-pfp-ruleFileCode/v1": "34a9ea01147cf2edc41faf5e7128c42c2816f9b69eb94bbb290cd15b1ab5a63b"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "34a9ea01147cf2edc41faf5e7128c42c2816f9b69eb94bbb290cd15b1ab5a63b"
+          }
+        },
+        {
+          "ruleId": "66c8aa25-37d5-3f8d-8ada-e6b3e079e4ba",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "This class could be used as deserialization gadget",
+            "id": "default"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 1,
+                  "endLine": 72,
+                  "endColumn": 5,
+                  "snippet": {
+                    "text": "@Slf4j\n// TODO move back to lesson\npublic class VulnerableTaskHolder implements Serializable {\n\n    private static final long serialVersionUID = 2;\n\n    private String taskName;\n    private String taskAction;\n    private LocalDateTime requestedExecutionTime;\n\n    public VulnerableTaskHolder(String taskName, String taskAction) {\n        super();\n        this.taskName = taskName;\n        this.taskAction = taskAction;\n        this.requestedExecutionTime = LocalDateTime.now();\n    }\n\n    @Override\n    public String toString() {\n        return \"VulnerableTaskHolder [taskName=\"\n                + taskName\n                + \", taskAction=\"\n                + taskAction\n                + \", requestedExecutionTime=\"\n                + requestedExecutionTime\n                + \"]\";\n    }\n\n    /**\n     * Execute a task when de-serializing a saved or received object.\n     *\n     * @author stupid develop\n     */\n    private void readObject(ObjectInputStream stream) throws Exception {\n        // unserialize data so taskName and taskAction are available\n        stream.defaultReadObject();\n\n        // do something with the data\n        log.info(\"restoring task: {}\", taskName);\n        log.info(\"restoring time: {}\", requestedExecutionTime);\n\n        if (requestedExecutionTime != null\n                && (requestedExecutionTime.isBefore(LocalDateTime.now().minusMinutes(10))\n                || requestedExecutionTime.isAfter(LocalDateTime.now()))) {\n            // do nothing is the time is not within 10 minutes after the object has been created\n            log.debug(this.toString());\n            throw new IllegalArgumentException(\"outdated\");\n        }\n\n        // condition is here to prevent you from destroying the goat altogether\n        if ((taskAction.startsWith(\"sleep\") || taskAction.startsWith(\"ping\"))\n                && taskAction.length() < 22) {\n            log.info(\"about to execute: {}\", taskAction);\n            try {\n                Process p = Runtime.getRuntime().exec(taskAction);\n                BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));\n                String line = null;\n                while ((line = in.readLine()) != null) {\n                    log.info(line);\n                }\n            } catch (IOException e) {\n                log.error(\"IO Exception\", e);\n            }\n        }\n    }"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "VulnerableTaskHolder",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.VulnerableTaskHolder",
+                  "kind": "type"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "5a7386233accc77527cbf815a2e7784d0c53454c566a13e55e1d8076e1db8524",
+            "glog-pfp-ruleFileCode/v1": "d1604239552a4b726ce20dec21c8cd94c2a76279fb34c51147ad9a97c3e554f3"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "d1604239552a4b726ce20dec21c8cd94c2a76279fb34c51147ad9a97c3e554f3"
+          }
+        }
+      ],
       "newlineSequences": [
         "\r\n",
         "\n"
