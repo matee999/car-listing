@@ -36,4 +36,215 @@ jobs:
           github-token: ${{ secrets.PAT_TOKEN }}
           glog-token: ${{ secrets.GLOG_TOKEN }}
           env: 'dev'
-    
+
+      - name: Upload SARIF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: glog-sarif
+          path: .glog/glog-scan.sarif
+
+  upload-issues:
+    needs: glog-scan
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Download SARIF artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: glog-sarif
+
+      - name: Create / update issues from SARIF (dedupe by fingerprint)
+        id: upload-issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+
+            const candidates = ["glog-scan.sarif", ".glog/glog-scan.sarif"];
+            const sarifPath = candidates.find(p => fs.existsSync(p));
+            if (!sarifPath) throw new Error(`SARIF not found. Tried: ${candidates.join(", ")}`);
+
+            const sarif = JSON.parse(fs.readFileSync(sarifPath, "utf8"));
+            const run = sarif.runs?.[0];
+            const rules = run?.tool?.driver?.rules ?? [];
+            const results = run?.results ?? [];
+
+            if (!results.length) {
+              core.info("No SARIF results found.");
+              core.setOutput("created", "");
+              return;
+            }
+
+            function pickFingerprint(r) {
+              return (
+                r.fingerprints?.["glog-fp-ruleFileCode/v1"] ||
+                r.partialFingerprints?.["glog-pfp-ruleFileLineCode/v1"] ||
+                r.partialFingerprints?.["glog-pfp-ruleFileCode/v1"] ||
+                null
+              );
+            }
+
+            const fingerprintRegex = /glog-fingerprint:\s*([a-f0-9]{32,128}|[^\s]+)/i;
+            const existingByFingerprint = new Map();
+
+            let page = 1;
+            while (true) {
+              const { data } = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: "open",
+                labels: "sarif",   // IMPORTANT: must match the label you set on created issues
+                per_page: 100,
+                page
+              });
+
+              if (!data.length) break;
+
+              for (const issue of data) {
+                // listForRepo returns PRs too; ignore them
+                if (issue.pull_request) continue;
+
+                const body = issue.body ?? "";
+                const m = body.match(fingerprintRegex);
+                if (m) existingByFingerprint.set(m[1], issue.number);
+              }
+
+              if (data.length < 100) break;
+              page++;
+            }
+
+            core.info(`Loaded ${existingByFingerprint.size} existing issues with fingerprints.`);
+
+            const MAX_ISSUES = 110;
+            const created = [];
+            let createdCount = 0;
+
+            for (const r of results) {
+              if (createdCount >= MAX_ISSUES) break;
+
+              const rule = rules.find(x => x.id === r.ruleId);
+              const message = r.message?.text ?? rule?.name ?? "Finding";
+              const severity = rule?.properties?.severity ?? r.level ?? "UNKNOWN";
+
+              const loc = r.locations?.[0];
+              const uri = loc?.physicalLocation?.artifactLocation?.uri ?? "unknown";
+              const region = loc?.physicalLocation?.region ?? {};
+              const startLine = region.startLine ?? "?";
+              const startCol = region.startColumn ?? "?";
+              const snippet = region.snippet?.text ?? "";
+              const sourceLang = region.sourceLanguage ?? "text";
+              const cwe = (rule?.properties?.cwe ?? []).map(x => x.id).join(", ") || "(none)";
+              const tags = (rule?.properties?.tags ?? []).join(", ") || "(none)";
+
+              const fp = pickFingerprint(r) ?? `${r.ruleId}:${uri}:${startLine}:${startCol}`;
+              const marker = `glog-fingerprint: ${fp}`;
+
+              // Build "fix suggestions" from SARIF fixes[]
+              const fixes = r.fixes ?? [];
+              const fixText = fixes.length
+                ? fixes.map((f, i) => {
+                    const rep = f.artifactChanges?.[0]?.replacements?.[0];
+                    const del = rep?.deletedRegion;
+                    const ins = rep?.insertedContent?.text;
+                    return [
+                      `### Fix option ${i + 1}`,
+                      `**Description:** ${f.description?.text ?? "(none)"}`,
+                      del ? `**DeletedRegion:** charOffset=${del.charOffset}, charLength=${del.charLength}` : "",
+                      ins ? `**InsertedContent:** \`${ins}\`` : "",
+                    ].filter(Boolean).join("\n");
+                  }).join("\n\n")
+                : "(No SARIF fixes[] provided)";
+
+              const helpMd = rule?.help?.markdown ?? "(No remediation markdown in rule)";
+
+              const body = [
+                marker,
+                ``,
+                `**RuleId:** ${r.ruleId}`,
+                `**Message:** ${message}`,
+                `**Severity:** ${severity}`,
+                `**CWE:** ${cwe}`,
+                `**Tags:** ${tags}`,
+                `**Language:** ${sourceLang}`,
+                ``,
+                `## Location`,
+                `- File: \`${uri}\``,
+                `- Line: ${startLine}, Column: ${startCol}`,
+                ``,
+                snippet ? `## Snippet\n\`\`\`${sourceLang}\n${snippet}\n\`\`\`` : "",
+                ``,
+                `## Remediation (rule help.markdown)`,
+                helpMd,
+                ``,
+                `## Suggested fix candidates (from SARIF fixes[])`,
+                fixText,
+                ``,
+                `## Acceptance criteria`,
+                `- Apply a safe fix (prefer bounded functions like \`snprintf\` / \`strnlen\` as appropriate)`,
+                `- Keep behavior intact`,
+                `- Run tests/build (add the exact command here for Copilot, e.g. \`cmake --build ...\` or \`bazel test ...\`)`,
+              ].filter(Boolean).join("\n");
+
+              const title = `[Glog] ${message} (${uri}:${startLine})`;
+
+              const existingIssueNumber = existingByFingerprint.get(fp);
+
+              if (existingIssueNumber) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existingIssueNumber,
+                  title,
+                  body
+                });
+                core.info(`Updated existing issue #${existingIssueNumber} for fingerprint ${fp}`);
+                continue;
+              }
+
+              const issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ["sarif", "security", "glog", "copilot"]
+              });
+
+              existingByFingerprint.set(fp, issue.data.number);
+              created.push(issue.data.number);
+              createdCount++;
+            }
+
+            core.setOutput("created", created.join(","));
+
+      - name: Assign created issues to Copilot (trigger agent)
+        if: ${{ steps.triage.outputs.created != '' }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            const issueNumbers = "${{ steps.triage.outputs.created }}".split(",").map(s => s.trim()).filter(Boolean);
+      
+            // Cap how many you send to Copilot in one run
+            const MAX_ASSIGN = 3;
+      
+            for (const n of issueNumbers.slice(0, MAX_ASSIGN)) {
+              const issue_number = Number(n);
+      
+              await github.request("POST /repos/{owner}/{repo}/issues/{issue_number}/assignees", {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number,
+                assignees: ["copilot-swe-agent[bot]"],
+                agent_assignment: {
+                  target_repo: `${context.repo.owner}/${context.repo.repo}`,
+                  base_branch: "main", // change if needed
+                  custom_instructions: [
+                    "Open a PR that fixes this issue.",
+                    "Keep changes minimal.",
+                    "Run tests/build best-effort before opening the PR."
+                  ].join("\n")
+                }
+              });
+            }
