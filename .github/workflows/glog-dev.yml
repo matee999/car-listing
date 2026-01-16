@@ -48,6 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+      contents: read
 
     steps:
       - name: Download SARIF artifact
@@ -219,7 +220,7 @@ jobs:
             core.setOutput("created", created.join(","));
 
       - name: Assign created issues to Copilot (trigger agent)
-        if: ${{ steps.triage.outputs.created != '' }}
+        if: ${{ steps.upload-issues.outputs.created != '' }}
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.PAT_TOKEN }}
