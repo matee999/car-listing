@@ -217,6 +217,7 @@ jobs:
               createdCount++;
             }
 
+            core.info(created.join(","));
             core.setOutput("created", created.join(","));
 
       - name: Assign created issues to Copilot (trigger agent)
