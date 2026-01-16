@@ -217,8 +217,10 @@ jobs:
               createdCount++;
             }
 
-            core.info(created.join(","));
             core.setOutput("created", created.join(","));
+
+      - name: Debug created output
+        run: echo "CREATED='${{ steps.upload-issues.outputs.created }}'"
 
       - name: Assign created issues to Copilot (trigger agent)
         if: ${{ steps.upload-issues.outputs.created != '' }}
