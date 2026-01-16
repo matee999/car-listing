@@ -98,20 +98,6 @@
               }
             },
             {
-              "id": "fa48d430-a3f2-35b9-9aca-5c88da58abbc",
-              "name": "Potential CRLF Injection for logs",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "\nThe term CRLF refers to Carriage Return (ASCII 13, \\r) Line Feed (ASCII 10, \\n). They're used to note the termination of a line, however, dealt with differently in today’s popular Operating Systems. For example: in Windows both a CR and LF are required to note the end of a line, whereas in Linux/UNIX a LF is only required. In the HTTP protocol, the CR-LF sequence is always used to terminate a line.\n\nA CRLF Injection attack occurs when a user manages to submit a CRLF into an application. This is most commonly done by modifying an HTTP parameter or URL.\n\n**Prevention (Output encoding):**\n\n```\nUsing the Pattern 'encode{}{CRLF}', introduced in Log4j2 v2.10.0, and the -500m message size limit.\n```\n\n**Solution (Output encoding):**\n\n```java\npublic String encode(String message) {\n    message = Encoder.forJava(message);\n    return message;\n}\n```\n\n## In Context Remediation\n```\nParameter name: line\nAllowed commands: org.owasp.encoder.Encode.forJava(line)\n```\n#### Remediation\nHere is an example of how you can use `org.owasp.encoder.Encode` to encode a parameter:\n\n```java\nimport java.io.ObjectInputStream;\nimport org.owasp.encoder.Encode;\n\npublic class VulnerableTaskHolder {\n    private void readObject(ObjectInputStream stream) throws Exception {\n        String line = (String) stream.readObject();\n        String encodedLine = Encode.forJava(line);\n        System.out.println(encodedLine);\n    }\n\n    public static void main(String[] args) throws Exception {\n        ObjectInputStream ois = new ObjectInputStream(System.in);\n        new VulnerableTaskHolder().readObject(ois);\n    }\n}\n```\n\nIn this example, we read a string from the input stream and then encode it using `Encode.forJava(line)`. The encoded string is then printed to the console.\n\nThe `org.owasp.encoder.Encode` class provides several methods for encoding strings depending on the context:\n\n- `forHtml(String)` - Encodes a string for safe use in HTML content.\n- `forHtmlContent(String)` - Encodes a string for safe use in HTML content, excluding HTML attributes.\n- `forHtmlAttribute(String)` - Encodes a string for safe use in an HTML attribute.\n- `forCssString(String)` - Encodes a string for safe use in a CSS string.\n- `forCssUrl(String)` - Encodes a string for safe use in a CSS URL.\n- `forUriComponent(String)` - Encodes a string for safe use in a URI component.\n- `forXml(String)` - Encodes a string for safe use in XML content.\n- `forXmlAttribute(String)` - Encodes a string for safe use in an XML attribute.\n- `forJava(String)` - Encodes a string for safe use in Java source code.\n\nTo run this application, you need to include the OWASP Java Encoder library in your project. Here is the Maven dependency for your `pom.xml`:\n\n```xml\n<dependency>\n    <groupId>org.owasp.encoder</groupId>\n    <artifactId>encoder</artifactId>\n    <version>1.2.2</version>\n</dependency>\n```\n\nPlease replace the version with the latest available version.\n\n___\n\n\n**References**\n\n- [OWASP: CRLF Injection](https://owasp.org/www-community/vulnerabilities/CRLF_Injection)\n- [OWASP: Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)\n- [OWASP Java Encoder](https://owasp.org/www-project-java-encoder/)\n- [OWASP Enterprise Security API (ESAPI)](https://owasp.org/www-project-enterprise-security-api/)\n- [Log4j2 configuration](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html#injection-prevention-in-java)\n\n\n"
-              },
-              "properties": {
-                "cwe": [],
-                "severity": "MEDIUM",
-                "kind": "FAIL"
-              }
-            },
-            {
               "id": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
               "name": "Potential Command Injection",
               "helpUri": "https://www.glog.ai/",
@@ -131,6 +117,20 @@
                 "tags": [
                   "CWE-77"
                 ]
+              }
+            },
+            {
+              "id": "fa48d430-a3f2-35b9-9aca-5c88da58abbc",
+              "name": "Potential CRLF Injection for logs",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nThe term CRLF refers to Carriage Return (ASCII 13, \\r) Line Feed (ASCII 10, \\n). They're used to note the termination of a line, however, dealt with differently in today’s popular Operating Systems. For example: in Windows both a CR and LF are required to note the end of a line, whereas in Linux/UNIX a LF is only required. In the HTTP protocol, the CR-LF sequence is always used to terminate a line.\n\nA CRLF Injection attack occurs when a user manages to submit a CRLF into an application. This is most commonly done by modifying an HTTP parameter or URL.\n\n**Prevention (Output encoding):**\n\n```\nUsing the Pattern 'encode{}{CRLF}', introduced in Log4j2 v2.10.0, and the -500m message size limit.\n```\n\n**Solution (Output encoding):**\n\n```java\npublic String encode(String message) {\n    message = Encoder.forJava(message);\n    return message;\n}\n```\n\n## In Context Remediation\n```\nParameter name: line\nAllowed commands: org.owasp.encoder.Encode.forJava(line)\n```\n#### Remediation\nHere is an example of how you can use `org.owasp.encoder.Encode` to encode a parameter:\n\n```java\nimport java.io.ObjectInputStream;\nimport org.owasp.encoder.Encode;\n\npublic class VulnerableTaskHolder {\n    private void readObject(ObjectInputStream stream) throws Exception {\n        String line = (String) stream.readObject();\n        String encodedLine = Encode.forJava(line);\n        System.out.println(encodedLine);\n    }\n\n    public static void main(String[] args) throws Exception {\n        ObjectInputStream ois = new ObjectInputStream(System.in);\n        new VulnerableTaskHolder().readObject(ois);\n    }\n}\n```\n\nIn this example, we read a string from the input stream and then encode it using `Encode.forJava(line)`. The encoded string is then printed to the console.\n\nThe `org.owasp.encoder.Encode` class provides several methods for encoding strings depending on the context:\n\n- `forHtml(String)` - Encodes a string for safe use in HTML content.\n- `forHtmlContent(String)` - Encodes a string for safe use in HTML content, excluding HTML attributes.\n- `forHtmlAttribute(String)` - Encodes a string for safe use in an HTML attribute.\n- `forCssString(String)` - Encodes a string for safe use in a CSS string.\n- `forCssUrl(String)` - Encodes a string for safe use in a CSS URL.\n- `forUriComponent(String)` - Encodes a string for safe use in a URI component.\n- `forXml(String)` - Encodes a string for safe use in XML content.\n- `forXmlAttribute(String)` - Encodes a string for safe use in an XML attribute.\n- `forJava(String)` - Encodes a string for safe use in Java source code.\n\nTo run this application, you need to include the OWASP Java Encoder library in your project. Here is the Maven dependency for your `pom.xml`:\n\n```xml\n<dependency>\n    <groupId>org.owasp.encoder</groupId>\n    <artifactId>encoder</artifactId>\n    <version>1.2.2</version>\n</dependency>\n```\n\nPlease replace the version with the latest available version.\n\n___\n\n\n**References**\n\n- [OWASP: CRLF Injection](https://owasp.org/www-community/vulnerabilities/CRLF_Injection)\n- [OWASP: Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)\n- [OWASP Java Encoder](https://owasp.org/www-project-java-encoder/)\n- [OWASP Enterprise Security API (ESAPI)](https://owasp.org/www-project-enterprise-security-api/)\n- [Log4j2 configuration](https://cheatsheetseries.owasp.org/cheatsheets/Java_Security_Cheat_Sheet.html#injection-prevention-in-java)\n\n\n"
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "MEDIUM",
+                "kind": "FAIL"
               }
             },
             {
@@ -180,46 +180,6 @@
       },
       "language": "en-US",
       "results": [
-        {
-          "ruleId": "d80cb999-462e-3935-aa7e-fa41d4510302",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Spring Endpoint Vulnerability"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/com/smg/car_listing/controller/CarListingController.java"
-                },
-                "region": {
-                  "startLine": 36,
-                  "startColumn": 13,
-                  "endLine": 36,
-                  "endColumn": 52,
-                  "snippet": {
-                    "text": "setEventId(UUID.randomUUID().toString())"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "name": "send(CarListingEvent)",
-                  "fullyQualifiedName": "com.smg.car_listing.controller.CarListingController.send(CarListingEvent)",
-                  "kind": "function"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "b89f5313b975ede4da95fc18821b691ae76d0e2f83c6fd0ae630432a05ce4d0f",
-            "glog-pfp-ruleFileCode/v1": "3ec70e6f913cb1553ac4c704dad8e9db46e6dec3ea6edd0bc56040cb87bfb54c"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "3ec70e6f913cb1553ac4c704dad8e9db46e6dec3ea6edd0bc56040cb87bfb54c"
-          }
-        },
         {
           "ruleId": "aec8db07-68e9-30fd-b738-bf4b16939065",
           "kind": "fail",
@@ -302,6 +262,46 @@
           },
           "fingerprints": {
             "glog-fp-ruleFileCode/v1": "2445b9a94c92139480d1f11405950970471424ec344139ff7e70d6996a9b6441"
+          }
+        },
+        {
+          "ruleId": "d80cb999-462e-3935-aa7e-fa41d4510302",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Spring Endpoint Vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/controller/CarListingController.java"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 13,
+                  "endLine": 36,
+                  "endColumn": 52,
+                  "snippet": {
+                    "text": "setEventId(UUID.randomUUID().toString())"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "send(CarListingEvent)",
+                  "fullyQualifiedName": "com.smg.car_listing.controller.CarListingController.send(CarListingEvent)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "b89f5313b975ede4da95fc18821b691ae76d0e2f83c6fd0ae630432a05ce4d0f",
+            "glog-pfp-ruleFileCode/v1": "3ec70e6f913cb1553ac4c704dad8e9db46e6dec3ea6edd0bc56040cb87bfb54c"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "3ec70e6f913cb1553ac4c704dad8e9db46e6dec3ea6edd0bc56040cb87bfb54c"
           }
         },
         {
@@ -393,50 +393,6 @@
           }
         },
         {
-          "ruleId": "fa48d430-a3f2-35b9-9aca-5c88da58abbc",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Potential CRLF Injection for logs",
-            "id": "default",
-            "arguments": [
-              "org/slf4j/Logger.info(Ljava/lang/String;)V"
-            ]
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
-                },
-                "region": {
-                  "startLine": 66,
-                  "startColumn": 25,
-                  "endLine": 66,
-                  "endColumn": 34,
-                  "snippet": {
-                    "text": "info(line)"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "name": "readObject(ObjectInputStream)",
-                  "fullyQualifiedName": "com.smg.car_listing.dummy.VulnerableTaskHolder.readObject(ObjectInputStream)",
-                  "kind": "function"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "0587977848e3495834d41ae9f5f294cef191d61dda92e0a3ca3fb4d4fc5e0611",
-            "glog-pfp-ruleFileCode/v1": "ebc7c8e36469056b5a52309fc67e9486eef43978e26455697695f6583bd8cfde"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "ebc7c8e36469056b5a52309fc67e9486eef43978e26455697695f6583bd8cfde"
-          }
-        },
-        {
           "ruleId": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
           "kind": "fail",
           "level": "warning",
@@ -478,6 +434,50 @@
           },
           "fingerprints": {
             "glog-fp-ruleFileCode/v1": "34a9ea01147cf2edc41faf5e7128c42c2816f9b69eb94bbb290cd15b1ab5a63b"
+          }
+        },
+        {
+          "ruleId": "fa48d430-a3f2-35b9-9aca-5c88da58abbc",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Potential CRLF Injection for logs",
+            "id": "default",
+            "arguments": [
+              "org/slf4j/Logger.info(Ljava/lang/String;)V"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 25,
+                  "endLine": 66,
+                  "endColumn": 34,
+                  "snippet": {
+                    "text": "info(line)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "readObject(ObjectInputStream)",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.VulnerableTaskHolder.readObject(ObjectInputStream)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "0587977848e3495834d41ae9f5f294cef191d61dda92e0a3ca3fb4d4fc5e0611",
+            "glog-pfp-ruleFileCode/v1": "ebc7c8e36469056b5a52309fc67e9486eef43978e26455697695f6583bd8cfde"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "ebc7c8e36469056b5a52309fc67e9486eef43978e26455697695f6583bd8cfde"
           }
         },
         {
