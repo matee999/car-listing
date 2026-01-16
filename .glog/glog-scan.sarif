@@ -12,28 +12,6 @@
           "informationUri": "https://www.glog.ai",
           "rules": [
             {
-              "id": "d80cb999-462e-3935-aa7e-fa41d4510302",
-              "name": "Spring Endpoint Vulnerability",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "## Description\n\nSpring Endpoint Vulnerability is a security issue that can occur in applications using the Spring Framework. This vulnerability can allow an attacker to gain unauthorized access to sensitive data or execute arbitrary code. It typically arises when an application exposes sensitive information through its endpoints, or when it fails to properly validate or sanitize input received through these endpoints.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, developers should:\n\n1. Limit the exposure of sensitive information through application endpoints.\n2. Implement proper input validation and sanitization to prevent injection attacks.\n3. Use authentication and authorization mechanisms to restrict access to sensitive endpoints.\n4. Regularly update the Spring Framework to the latest version to benefit from security patches.\n\n## Source Code Fix Recommendation\n\nThe specific vulnerability sink `setEventId(UUID.randomUUID().toString())` does not seem to be directly related to a Spring Endpoint Vulnerability. However, if this code is part of an exposed endpoint that does not implement proper access controls, it could potentially be exploited.\n\nTo mitigate this, you could add authentication and authorization checks before this code is executed. Here is an example using Spring Security:\n\n```java\nimport org.springframework.security.access.prepost.PreAuthorize;\n\n@PreAuthorize(\"hasRole('ROLE_USER')\")\npublic void secureMethod() {\n    setEventId(UUID.randomUUID().toString());\n}\n```\n\nIn this example, the `@PreAuthorize` annotation ensures that only authenticated users with the 'ROLE_USER' role can access the `secureMethod()` method.\n\n## Library Dependencies\n\nThe following libraries are required for the code example:\n\n- Spring Framework\n- Spring Security\n- Java UUID library (built into Java)\n\n## OWASP and CWE Resources\n\n- [OWASP Top Ten 2017: A6 - Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [CWE-285: Improper Authorization](https://cwe.mitre.org/data/definitions/285.html)\n\nPlease note that the links provided are subject to change and may not be accessible at all times."
-              },
-              "properties": {
-                "cwe": [
-                  {
-                    "id": "CWE-285",
-                    "url": "https://cwe.mitre.org/data/definitions/285.html"
-                  }
-                ],
-                "severity": "LOW",
-                "kind": "FAIL",
-                "tags": [
-                  "CWE-285"
-                ]
-              }
-            },
-            {
               "id": "aec8db07-68e9-30fd-b738-bf4b16939065",
               "name": "Use of Object Deserialization in {1} Vulnerability",
               "helpUri": "https://www.glog.ai/",
@@ -70,6 +48,28 @@
               }
             },
             {
+              "id": "d80cb999-462e-3935-aa7e-fa41d4510302",
+              "name": "Spring Endpoint Vulnerability",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nSpring Endpoint Vulnerability is a security issue that can occur in applications using the Spring Framework. This vulnerability can allow an attacker to gain unauthorized access to sensitive data or execute arbitrary code. It typically arises when an application exposes sensitive information through its endpoints, or when it fails to properly validate or sanitize input received through these endpoints.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, developers should:\n\n1. Limit the exposure of sensitive information through application endpoints.\n2. Implement proper input validation and sanitization to prevent injection attacks.\n3. Use authentication and authorization mechanisms to restrict access to sensitive endpoints.\n4. Regularly update the Spring Framework to the latest version to benefit from security patches.\n\n## Source Code Fix Recommendation\n\nThe specific vulnerability sink `setEventId(UUID.randomUUID().toString())` does not seem to be directly related to a Spring Endpoint Vulnerability. However, if this code is part of an exposed endpoint that does not implement proper access controls, it could potentially be exploited.\n\nTo mitigate this, you could add authentication and authorization checks before this code is executed. Here is an example using Spring Security:\n\n```java\nimport org.springframework.security.access.prepost.PreAuthorize;\n\n@PreAuthorize(\"hasRole('ROLE_USER')\")\npublic void secureMethod() {\n    setEventId(UUID.randomUUID().toString());\n}\n```\n\nIn this example, the `@PreAuthorize` annotation ensures that only authenticated users with the 'ROLE_USER' role can access the `secureMethod()` method.\n\n## Library Dependencies\n\nThe following libraries are required for the code example:\n\n- Spring Framework\n- Spring Security\n- Java UUID library (built into Java)\n\n## OWASP and CWE Resources\n\n- [OWASP Top Ten 2017: A6 - Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [CWE-285: Improper Authorization](https://cwe.mitre.org/data/definitions/285.html)\n\nPlease note that the links provided are subject to change and may not be accessible at all times."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-285",
+                    "url": "https://cwe.mitre.org/data/definitions/285.html"
+                  }
+                ],
+                "severity": "LOW",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-285"
+                ]
+              }
+            },
+            {
               "id": "cfdc29b7-1a2c-39ce-b563-a53e45eca729",
               "name": "Found Spring endpoint",
               "helpUri": "https://www.glog.ai/",
@@ -98,6 +98,28 @@
               }
             },
             {
+              "id": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
+              "name": "Potential Command Injection",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "\nCommand injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell. In this attack, the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application. Command injection attacks are possible largely due to insufficient input validation.\n\nAssume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use a list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does.\n\nWhen performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if the input is only expected to contain colors such as \"red\" or \"blue.\"\n\nDo not rely exclusively on looking for malicious or malformed inputs. This is likely to miss at least one undesirable input, especially if the code's environment changes. This can give attackers enough room to bypass the intended validation. However, denylists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.\n\n## Solution (Input Validation)\n\n```java\n\n    // Predefined whitelist of allowed commands\n    private static final Set<String> ALLOWED_COMMANDS = new HashSet<>();\n\n    public boolean validateCommand(String command) {\n        // Check if the command is in the whitelist\n        return ALLOWED_COMMANDS.contains(command);\n    }\n```\n\n## In Context Remediation\n```\nParameter name: p\nAllowed commands: Windows: type, more, find; Linux: cat, more, grep\n```\n#### Remediation\nHere is a simple example of how you can implement a whitelist of allowed OS commands in Java. This example uses the ProcessBuilder class to execute the commands.\n\n```java\nimport java.io.BufferedReader;\nimport java.io.InputStreamReader;\nimport java.io.ObjectInputStream;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class VulnerableTaskHolder {\n    private static final List<String> ALLOWED_WINDOWS_COMMANDS = Arrays.asList(\"type\", \"more\", \"find\");\n    private static final List<String> ALLOWED_LINUX_COMMANDS = Arrays.asList(\"cat\", \"more\", \"grep\");\n\n    private void readObject(ObjectInputStream stream) throws Exception {\n        String command = (String) stream.readObject();\n        String os = System.getProperty(\"os.name\").toLowerCase();\n\n        List<String> allowedCommands = os.contains(\"win\") ? ALLOWED_WINDOWS_COMMANDS : ALLOWED_LINUX_COMMANDS;\n\n        if (!allowedCommands.contains(command.split(\" \")[0])) {\n            throw new Exception(\"Command not allowed\");\n        }\n\n        ProcessBuilder processBuilder = new ProcessBuilder(command.split(\" \"));\n        Process process = processBuilder.start();\n\n        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));\n        String line;\n        while ((line = reader.readLine()) != null) {\n            System.out.println(line);\n        }\n    }\n}\n```\n\nThis code reads a command from an ObjectInputStream, checks if the command is in the whitelist for the current OS, and then executes the command if it is allowed. The output of the command is then printed to the console.\n\nThis code should be run in a console application. It does not require any additional dependencies beyond the standard Java libraries.\n\nPlease note that this is a very basic example and does not include any error handling or security measures beyond the command whitelist. In a real-world application, you would need to implement additional security measures to prevent command injection attacks.\n\n___\n```\nParameter name: Runtime.getRuntime().exec(taskAction)\nAllowed commands: Windows: cmd.exe, powershell.exe; Linux: bash, sh, zsh\n```\n#### Remediation\nHere is a simple example of how you can implement a whitelist of allowed OS commands in Java. This example uses a console application.\n\n```java\nimport java.io.IOException;\nimport java.io.ObjectInputStream;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class VulnerableTaskHolder {\n    private String taskAction;\n\n    private void readObject(ObjectInputStream stream) throws Exception {\n        taskAction = (String) stream.readObject();\n        validateCommand(taskAction);\n        Runtime.getRuntime().exec(taskAction);\n    }\n\n    private void validateCommand(String command) throws Exception {\n        List<String> allowedCommands;\n        String os = System.getProperty(\"os.name\").toLowerCase();\n\n        if (os.contains(\"win\")) {\n            allowedCommands = Arrays.asList(\"cmd.exe\", \"powershell.exe\");\n        } else if (os.contains(\"nix\") || os.contains(\"nux\") || os.contains(\"mac\")) {\n            allowedCommands = Arrays.asList(\"bash\", \"sh\", \"zsh\");\n        } else {\n            throw new Exception(\"Unsupported operating system\");\n        }\n\n        if (!allowedCommands.contains(command)) {\n            throw new Exception(\"Command not allowed\");\n        }\n    }\n\n    public static void main(String[] args) throws Exception {\n        VulnerableTaskHolder holder = new VulnerableTaskHolder();\n        holder.readObject(new ObjectInputStream(System.in));\n    }\n}\n```\n\nThis application doesn't require any additional dependencies, it uses only standard Java libraries. \n\nPlease note that this is a very basic example and might not cover all possible security issues. For example, it doesn't check for command arguments, so a user might still be able to execute a disallowed command by passing it as an argument to an allowed command. Also, it doesn't handle the case when a user tries to execute a command from a different directory. You might want to improve this code to make it more secure.\n\n___\n\n\n## References\n- [OWASP: Command Injection](https://owasp.org/www-community/attacks/Command_Injection)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [CWE-77: Command Injection](https://cwe.mitre.org/data/definitions/77.html)\n\n\n"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-77",
+                    "url": "https://cwe.mitre.org/data/definitions/77.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-77"
+                ]
+              }
+            },
+            {
               "id": "8a773c21-b0b2-373c-9699-8c03ccd1d231",
               "name": "Potential CRLF Injection for logs",
               "helpUri": "https://www.glog.ai/",
@@ -123,28 +145,6 @@
                 "cwe": [],
                 "severity": "MEDIUM",
                 "kind": "FAIL"
-              }
-            },
-            {
-              "id": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
-              "name": "Potential Command Injection",
-              "helpUri": "https://www.glog.ai/",
-              "help": {
-                "text": "",
-                "markdown": "\nCommand injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell. In this attack, the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application. Command injection attacks are possible largely due to insufficient input validation.\n\nAssume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use a list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does.\n\nWhen performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if the input is only expected to contain colors such as \"red\" or \"blue.\"\n\nDo not rely exclusively on looking for malicious or malformed inputs. This is likely to miss at least one undesirable input, especially if the code's environment changes. This can give attackers enough room to bypass the intended validation. However, denylists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.\n\n## Solution (Input Validation)\n\n```java\n\n    // Predefined whitelist of allowed commands\n    private static final Set<String> ALLOWED_COMMANDS = new HashSet<>();\n\n    public boolean validateCommand(String command) {\n        // Check if the command is in the whitelist\n        return ALLOWED_COMMANDS.contains(command);\n    }\n```\n\n## In Context Remediation\n```\nParameter name: p\nAllowed commands: Windows: type, more, find; Linux: cat, more, grep\n```\n#### Remediation\nHere is a simple example of how you can implement a whitelist of allowed OS commands in Java. This example uses the ProcessBuilder class to execute the commands.\n\n```java\nimport java.io.BufferedReader;\nimport java.io.InputStreamReader;\nimport java.io.ObjectInputStream;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class VulnerableTaskHolder {\n    private static final List<String> ALLOWED_WINDOWS_COMMANDS = Arrays.asList(\"type\", \"more\", \"find\");\n    private static final List<String> ALLOWED_LINUX_COMMANDS = Arrays.asList(\"cat\", \"more\", \"grep\");\n\n    private void readObject(ObjectInputStream stream) throws Exception {\n        String command = (String) stream.readObject();\n        String os = System.getProperty(\"os.name\").toLowerCase();\n\n        List<String> allowedCommands = os.contains(\"win\") ? ALLOWED_WINDOWS_COMMANDS : ALLOWED_LINUX_COMMANDS;\n\n        if (!allowedCommands.contains(command.split(\" \")[0])) {\n            throw new Exception(\"Command not allowed\");\n        }\n\n        ProcessBuilder processBuilder = new ProcessBuilder(command.split(\" \"));\n        Process process = processBuilder.start();\n\n        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));\n        String line;\n        while ((line = reader.readLine()) != null) {\n            System.out.println(line);\n        }\n    }\n}\n```\n\nThis code reads a command from an ObjectInputStream, checks if the command is in the whitelist for the current OS, and then executes the command if it is allowed. The output of the command is then printed to the console.\n\nThis code should be run in a console application. It does not require any additional dependencies beyond the standard Java libraries.\n\nPlease note that this is a very basic example and does not include any error handling or security measures beyond the command whitelist. In a real-world application, you would need to implement additional security measures to prevent command injection attacks.\n\n___\n```\nParameter name: Runtime.getRuntime().exec(taskAction)\nAllowed commands: Windows: cmd.exe, powershell.exe; Linux: bash, sh, zsh\n```\n#### Remediation\nHere is a simple example of how you can implement a whitelist of allowed OS commands in Java. This example uses a console application.\n\n```java\nimport java.io.IOException;\nimport java.io.ObjectInputStream;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class VulnerableTaskHolder {\n    private String taskAction;\n\n    private void readObject(ObjectInputStream stream) throws Exception {\n        taskAction = (String) stream.readObject();\n        validateCommand(taskAction);\n        Runtime.getRuntime().exec(taskAction);\n    }\n\n    private void validateCommand(String command) throws Exception {\n        List<String> allowedCommands;\n        String os = System.getProperty(\"os.name\").toLowerCase();\n\n        if (os.contains(\"win\")) {\n            allowedCommands = Arrays.asList(\"cmd.exe\", \"powershell.exe\");\n        } else if (os.contains(\"nix\") || os.contains(\"nux\") || os.contains(\"mac\")) {\n            allowedCommands = Arrays.asList(\"bash\", \"sh\", \"zsh\");\n        } else {\n            throw new Exception(\"Unsupported operating system\");\n        }\n\n        if (!allowedCommands.contains(command)) {\n            throw new Exception(\"Command not allowed\");\n        }\n    }\n\n    public static void main(String[] args) throws Exception {\n        VulnerableTaskHolder holder = new VulnerableTaskHolder();\n        holder.readObject(new ObjectInputStream(System.in));\n    }\n}\n```\n\nThis application doesn't require any additional dependencies, it uses only standard Java libraries. \n\nPlease note that this is a very basic example and might not cover all possible security issues. For example, it doesn't check for command arguments, so a user might still be able to execute a disallowed command by passing it as an argument to an allowed command. Also, it doesn't handle the case when a user tries to execute a command from a different directory. You might want to improve this code to make it more secure.\n\n___\n\n\n## References\n- [OWASP: Command Injection](https://owasp.org/www-community/attacks/Command_Injection)\n- [OWASP: Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)\n- [CWE-77: Command Injection](https://cwe.mitre.org/data/definitions/77.html)\n\n\n"
-              },
-              "properties": {
-                "cwe": [
-                  {
-                    "id": "CWE-77",
-                    "url": "https://cwe.mitre.org/data/definitions/77.html"
-                  }
-                ],
-                "severity": "MEDIUM",
-                "kind": "FAIL",
-                "tags": [
-                  "CWE-77"
-                ]
               }
             },
             {
@@ -221,46 +221,6 @@
           }
         },
         {
-          "ruleId": "aec8db07-68e9-30fd-b738-bf4b16939065",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Use of Object Deserialization in {1} Vulnerability"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/main/java/com/smg/car_listing/dummy/InsecureDeserializationTask.java"
-                },
-                "region": {
-                  "startLine": 34,
-                  "startColumn": 13,
-                  "endLine": 34,
-                  "endColumn": 39,
-                  "snippet": {
-                    "text": "Object o = ois.readObject()"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "name": "completed(String)",
-                  "fullyQualifiedName": "com.smg.car_listing.dummy.InsecureDeserializationTask.completed(String)",
-                  "kind": "function"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "8d55fcdf9d2ac596857d4bf602a00bb4f914deaf403e2035361105f88cdc7e02",
-            "glog-pfp-ruleFileCode/v1": "c3b02d1face825a56d259a21c58022f31187b6148aea8129d5227f8424bff784"
-          },
-          "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "c3b02d1face825a56d259a21c58022f31187b6148aea8129d5227f8424bff784"
-          }
-        },
-        {
           "ruleId": "d7725477-9776-3792-9d79-96f5b42cdbd1",
           "kind": "fail",
           "level": "note",
@@ -302,6 +262,46 @@
           },
           "fingerprints": {
             "glog-fp-ruleFileCode/v1": "2445b9a94c92139480d1f11405950970471424ec344139ff7e70d6996a9b6441"
+          }
+        },
+        {
+          "ruleId": "aec8db07-68e9-30fd-b738-bf4b16939065",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Use of Object Deserialization in {1} Vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/smg/car_listing/dummy/InsecureDeserializationTask.java"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 13,
+                  "endLine": 34,
+                  "endColumn": 39,
+                  "snippet": {
+                    "text": "Object o = ois.readObject()"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "completed(String)",
+                  "fullyQualifiedName": "com.smg.car_listing.dummy.InsecureDeserializationTask.completed(String)",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "8d55fcdf9d2ac596857d4bf602a00bb4f914deaf403e2035361105f88cdc7e02",
+            "glog-pfp-ruleFileCode/v1": "c3b02d1face825a56d259a21c58022f31187b6148aea8129d5227f8424bff784"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "c3b02d1face825a56d259a21c58022f31187b6148aea8129d5227f8424bff784"
           }
         },
         {
@@ -393,14 +393,14 @@
           }
         },
         {
-          "ruleId": "8a773c21-b0b2-373c-9699-8c03ccd1d231",
+          "ruleId": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
           "kind": "fail",
-          "level": "note",
+          "level": "warning",
           "message": {
-            "text": "Potential CRLF Injection for logs",
+            "text": "Potential Command Injection",
             "id": "default",
             "arguments": [
-              "org/slf4j/Logger.debug(Ljava/lang/String;)V"
+              "java/lang/Runtime.exec(Ljava/lang/String;)Ljava/lang/Process;"
             ]
           },
           "locations": [
@@ -410,12 +410,12 @@
                   "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
                 },
                 "region": {
-                  "startLine": 53,
+                  "startLine": 62,
                   "startColumn": 17,
-                  "endLine": 53,
-                  "endColumn": 38,
+                  "endLine": 62,
+                  "endColumn": 65,
                   "snippet": {
-                    "text": "debug(this.toString())"
+                    "text": "Process p = Runtime.getRuntime().exec(taskAction)"
                   }
                 }
               },
@@ -429,11 +429,11 @@
             }
           ],
           "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "246a32c2d58b8a9ade7382c21f6491cfa793c09f2af5916d3f4f66ffd2bc74dc",
-            "glog-pfp-ruleFileCode/v1": "21ea5fb7f3bf6e5130fa6cc19b23352b0a642a1f8e04eee026ec6c308a02494a"
+            "glog-pfp-ruleFileLineCode/v1": "4e5a4a6af9dab0a02d3437499a1eaf1b5ddc0981ea63127926c22fbc561dc401",
+            "glog-pfp-ruleFileCode/v1": "34a9ea01147cf2edc41faf5e7128c42c2816f9b69eb94bbb290cd15b1ab5a63b"
           },
           "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "21ea5fb7f3bf6e5130fa6cc19b23352b0a642a1f8e04eee026ec6c308a02494a"
+            "glog-fp-ruleFileCode/v1": "34a9ea01147cf2edc41faf5e7128c42c2816f9b69eb94bbb290cd15b1ab5a63b"
           }
         },
         {
@@ -481,14 +481,14 @@
           }
         },
         {
-          "ruleId": "af97a364-8f3a-3e65-b7b5-d865ee596b91",
+          "ruleId": "8a773c21-b0b2-373c-9699-8c03ccd1d231",
           "kind": "fail",
-          "level": "warning",
+          "level": "note",
           "message": {
-            "text": "Potential Command Injection",
+            "text": "Potential CRLF Injection for logs",
             "id": "default",
             "arguments": [
-              "java/lang/Runtime.exec(Ljava/lang/String;)Ljava/lang/Process;"
+              "org/slf4j/Logger.debug(Ljava/lang/String;)V"
             ]
           },
           "locations": [
@@ -498,12 +498,12 @@
                   "uri": "src/main/java/com/smg/car_listing/dummy/VulnerableTaskHolder.java"
                 },
                 "region": {
-                  "startLine": 62,
+                  "startLine": 53,
                   "startColumn": 17,
-                  "endLine": 62,
-                  "endColumn": 65,
+                  "endLine": 53,
+                  "endColumn": 38,
                   "snippet": {
-                    "text": "Process p = Runtime.getRuntime().exec(taskAction)"
+                    "text": "debug(this.toString())"
                   }
                 }
               },
@@ -517,11 +517,11 @@
             }
           ],
           "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "4e5a4a6af9dab0a02d3437499a1eaf1b5ddc0981ea63127926c22fbc561dc401",
-            "glog-pfp-ruleFileCode/v1": "34a9ea01147cf2edc41faf5e7128c42c2816f9b69eb94bbb290cd15b1ab5a63b"
+            "glog-pfp-ruleFileLineCode/v1": "246a32c2d58b8a9ade7382c21f6491cfa793c09f2af5916d3f4f66ffd2bc74dc",
+            "glog-pfp-ruleFileCode/v1": "21ea5fb7f3bf6e5130fa6cc19b23352b0a642a1f8e04eee026ec6c308a02494a"
           },
           "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "34a9ea01147cf2edc41faf5e7128c42c2816f9b69eb94bbb290cd15b1ab5a63b"
+            "glog-fp-ruleFileCode/v1": "21ea5fb7f3bf6e5130fa6cc19b23352b0a642a1f8e04eee026ec6c308a02494a"
           }
         },
         {
